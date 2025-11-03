@@ -54,9 +54,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="OknoLogowania.pl-PL.resx">
-      <DependentUpon>OknoLogowania.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="OknoLogowania.resx">
       <DependentUpon>OknoLogowania.cs</DependentUpon>
     </EmbeddedResource>
