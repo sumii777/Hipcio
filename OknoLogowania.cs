@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Hipcio
 {
-    public partial class Form1 : Form
+    public partial class OknoLogowania : Form
     {
-        public Form1()
+        public OknoLogowania()
         {
             InitializeComponent();
             //maksymalizacja okna przy starcie aplikacji

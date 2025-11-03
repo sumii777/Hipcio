@@ -1,6 +1,6 @@
 ﻿namespace Hipcio
 {
-    partial class Form1
+    partial class OknoLogowania
     {
         /// <summary>
         /// Wymagana zmienna projektanta.
@@ -30,13 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // Form1
+            // OknoLogowania
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "OknoLogowania";
+            this.Text = "Logowanie";
             this.ResumeLayout(false);
 
         }
