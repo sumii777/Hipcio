@@ -15,11 +15,8 @@ namespace Hipcio
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            //maksymalizacja okna przy starcie aplikacji
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }
