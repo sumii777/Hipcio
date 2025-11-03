@@ -34,7 +34,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(11)))), ((int)(((byte)(11)))));
+            this.ClientSize = new System.Drawing.Size(944, 501);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.MaximumSize = new System.Drawing.Size(960, 540);
+            this.MinimumSize = new System.Drawing.Size(960, 540);
             this.Name = "OknoLogowania";
             this.Text = "Logowanie";
             this.ResumeLayout(false);

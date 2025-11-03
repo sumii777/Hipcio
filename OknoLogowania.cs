@@ -15,13 +15,6 @@ namespace Hipcio
         public OknoLogowania()
         {
             InitializeComponent();
-            //maksymalizacja okna przy starcie aplikacji
-            this.WindowState = FormWindowState.Maximized;
-        }
-
-        private void OknoLogowania_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
