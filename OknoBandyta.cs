@@ -41,20 +41,22 @@ namespace Hipcio
             randomNumber2 = rand.Next(0, zdjecia.Length);
             randomNumber3 = rand.Next(0, zdjecia.Length);
             //przypisanie do pictureBoxów zdjęć z losowym indeksem
-            pictureBox1.Image = zdjecia[randomNumber1];
-            pictureBox2.Image = zdjecia[randomNumber2];
-            pictureBox3.Image = zdjecia[randomNumber3];
+            obrazWynik1.Image = zdjecia[randomNumber1];
+            obrazWynik2.Image = zdjecia[randomNumber2];
+            obrazWynik3.Image = zdjecia[randomNumber3];
 
             //sprawdzanie czy wszystkie wylosowane symbole są takie same
             if (randomNumber1 == randomNumber2 && randomNumber1 == randomNumber3)
             {
-                //jeśli symbole są identyczne to użytkownik wygrywa
-                MessageBox.Show("Użytkownik wygrał", "Wynik zakładu");
+                //wyświetla sie informacja o wygranej gdy symbole są identyczne
+                infoWynik.Text = "Wygrana";
+                infoWynik.ForeColor = Color.FromArgb(34, 111, 84);
             }
             else
             {
-                //jeśli symbole są inne to użytkownik przegrywa
-                MessageBox.Show("Uzytkownik przegrał", "Wynik zakładu");
+                //wyświetla sie informacja o przegranej gdy symbole są inne
+                infoWynik.Text = "Przegrana";
+                infoWynik.ForeColor = Color.FromArgb(218, 44, 56);
             }
         }
     }
