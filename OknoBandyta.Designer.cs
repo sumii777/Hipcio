@@ -57,9 +57,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
             this.tableLayoutPanel1.Controls.Add(this.infoWynik, 3, 7);
-            this.tableLayoutPanel1.Controls.Add(this.zaklad, 5, 8);
+            this.tableLayoutPanel1.Controls.Add(this.zaklad, 4, 8);
             this.tableLayoutPanel1.Controls.Add(this.saldo, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.infoZaklad, 5, 7);
+            this.tableLayoutPanel1.Controls.Add(this.infoZaklad, 4, 7);
             this.tableLayoutPanel1.Controls.Add(this.infoSaldo, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.przyciskKrec, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.obrazWynik1, 1, 3);
@@ -161,52 +161,56 @@
             // 
             // infoSaldo
             // 
-            this.infoSaldo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel1.SetColumnSpan(this.infoSaldo, 2);
+            this.infoSaldo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.infoSaldo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.infoSaldo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
             this.infoSaldo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.infoSaldo.Location = new System.Drawing.Point(215, 428);
+            this.infoSaldo.Location = new System.Drawing.Point(215, 425);
             this.infoSaldo.Name = "infoSaldo";
-            this.infoSaldo.Size = new System.Drawing.Size(135, 19);
+            this.infoSaldo.Size = new System.Drawing.Size(182, 25);
             this.infoSaldo.TabIndex = 5;
             this.infoSaldo.Text = "Twoje saldo";
             this.infoSaldo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // infoZaklad
             // 
-            this.infoZaklad.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel1.SetColumnSpan(this.infoZaklad, 2);
+            this.infoZaklad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.infoZaklad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.infoZaklad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
             this.infoZaklad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.infoZaklad.Location = new System.Drawing.Point(591, 428);
+            this.infoZaklad.Location = new System.Drawing.Point(544, 425);
             this.infoZaklad.Name = "infoZaklad";
-            this.infoZaklad.Size = new System.Drawing.Size(135, 19);
+            this.infoZaklad.Size = new System.Drawing.Size(182, 25);
             this.infoZaklad.TabIndex = 6;
             this.infoZaklad.Text = "Zakład";
             this.infoZaklad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // saldo
             // 
-            this.saldo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel1.SetColumnSpan(this.saldo, 2);
+            this.saldo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.saldo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.saldo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
             this.saldo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.saldo.Location = new System.Drawing.Point(215, 453);
+            this.saldo.Location = new System.Drawing.Point(215, 450);
             this.saldo.Name = "saldo";
-            this.saldo.Size = new System.Drawing.Size(135, 19);
+            this.saldo.Size = new System.Drawing.Size(182, 25);
             this.saldo.TabIndex = 7;
             this.saldo.Text = "{saldo}";
             this.saldo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // zaklad
             // 
-            this.zaklad.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel1.SetColumnSpan(this.zaklad, 2);
+            this.zaklad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.zaklad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.zaklad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
             this.zaklad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.zaklad.Location = new System.Drawing.Point(591, 453);
+            this.zaklad.Location = new System.Drawing.Point(544, 450);
             this.zaklad.Name = "zaklad";
-            this.zaklad.Size = new System.Drawing.Size(135, 19);
+            this.zaklad.Size = new System.Drawing.Size(182, 25);
             this.zaklad.TabIndex = 8;
             this.zaklad.Text = "{zakład}";
             this.zaklad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

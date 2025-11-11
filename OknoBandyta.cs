@@ -12,7 +12,7 @@ namespace Hipcio
 {
     public partial class OknoBandyta : Form
     {
-        //tworzenie obiektu losowej
+        //tworzenie obiektu losowego
         Random rand = new Random();
         //deklaracja zmiennych do przechowywania liczb losowych
         int randomNumber1;
