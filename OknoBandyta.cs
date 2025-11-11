@@ -44,6 +44,18 @@ namespace Hipcio
             pictureBox1.Image = zdjecia[randomNumber1];
             pictureBox2.Image = zdjecia[randomNumber2];
             pictureBox3.Image = zdjecia[randomNumber3];
+
+            //sprawdzanie czy wszystkie wylosowane symbole są takie same
+            if (randomNumber1 == randomNumber2 && randomNumber1 == randomNumber3)
+            {
+                //jeśli symbole są identyczne to użytkownik wygrywa
+                MessageBox.Show("Użytkownik wygrał", "Wynik zakładu");
+            }
+            else
+            {
+                //jeśli symbole są inne to użytkownik przegrywa
+                MessageBox.Show("Uzytkownik przegrał", "Wynik zakładu");
+            }
         }
     }
 }
