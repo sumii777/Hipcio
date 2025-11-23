@@ -16,7 +16,7 @@ namespace Hipcio
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new OknoBandyta());
+            Application.Run(new OknoBlackJack());
         }
     }
 }

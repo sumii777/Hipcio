@@ -93,6 +93,9 @@
     <EmbeddedResource Include="OknoBandyta.resx">
       <DependentUpon>OknoBandyta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OknoBlackJack.resx">
+      <DependentUpon>OknoBlackJack.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OknoLogowania.resx">
       <DependentUpon>OknoLogowania.cs</DependentUpon>
     </EmbeddedResource>
