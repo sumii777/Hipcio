@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.infoWynik = new System.Windows.Forms.Label();
+            this.zaklad = new System.Windows.Forms.Label();
+            this.saldo = new System.Windows.Forms.Label();
+            this.infoZaklad = new System.Windows.Forms.Label();
+            this.infoSaldo = new System.Windows.Forms.Label();
             this.przyciskKrec = new System.Windows.Forms.Button();
             this.obrazWynik1 = new System.Windows.Forms.PictureBox();
             this.obrazWynik2 = new System.Windows.Forms.PictureBox();
             this.obrazWynik3 = new System.Windows.Forms.PictureBox();
             this.infoGra = new System.Windows.Forms.Label();
-            this.infoSaldo = new System.Windows.Forms.Label();
-            this.infoZaklad = new System.Windows.Forms.Label();
-            this.saldo = new System.Windows.Forms.Label();
-            this.zaklad = new System.Windows.Forms.Label();
-            this.infoWynik = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik2)).BeginInit();
@@ -82,6 +82,74 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(944, 501);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // infoWynik
+            // 
+            this.infoWynik.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.infoWynik.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.infoWynik.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
+            this.infoWynik.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.infoWynik.Location = new System.Drawing.Point(403, 428);
+            this.infoWynik.Name = "infoWynik";
+            this.infoWynik.Size = new System.Drawing.Size(135, 19);
+            this.infoWynik.TabIndex = 9;
+            this.infoWynik.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // zaklad
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.zaklad, 2);
+            this.zaklad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.zaklad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.zaklad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
+            this.zaklad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.zaklad.Location = new System.Drawing.Point(544, 450);
+            this.zaklad.Name = "zaklad";
+            this.zaklad.Size = new System.Drawing.Size(182, 25);
+            this.zaklad.TabIndex = 8;
+            this.zaklad.Text = "{zakład}";
+            this.zaklad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // saldo
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.saldo, 2);
+            this.saldo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.saldo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.saldo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
+            this.saldo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.saldo.Location = new System.Drawing.Point(215, 450);
+            this.saldo.Name = "saldo";
+            this.saldo.Size = new System.Drawing.Size(182, 25);
+            this.saldo.TabIndex = 7;
+            this.saldo.Text = "{saldo}";
+            this.saldo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // infoZaklad
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.infoZaklad, 2);
+            this.infoZaklad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.infoZaklad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.infoZaklad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
+            this.infoZaklad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.infoZaklad.Location = new System.Drawing.Point(544, 425);
+            this.infoZaklad.Name = "infoZaklad";
+            this.infoZaklad.Size = new System.Drawing.Size(182, 25);
+            this.infoZaklad.TabIndex = 6;
+            this.infoZaklad.Text = "Zakład";
+            this.infoZaklad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // infoSaldo
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.infoSaldo, 2);
+            this.infoSaldo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.infoSaldo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.infoSaldo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
+            this.infoSaldo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.infoSaldo.Location = new System.Drawing.Point(215, 425);
+            this.infoSaldo.Name = "infoSaldo";
+            this.infoSaldo.Size = new System.Drawing.Size(182, 25);
+            this.infoSaldo.TabIndex = 5;
+            this.infoSaldo.Text = "Twoje saldo";
+            this.infoSaldo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // przyciskKrec
             // 
@@ -158,74 +226,6 @@
             this.infoGra.TabIndex = 3;
             this.infoGra.Text = "Jednoręki Bandyta";
             this.infoGra.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // infoSaldo
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.infoSaldo, 2);
-            this.infoSaldo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infoSaldo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.infoSaldo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.infoSaldo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.infoSaldo.Location = new System.Drawing.Point(215, 425);
-            this.infoSaldo.Name = "infoSaldo";
-            this.infoSaldo.Size = new System.Drawing.Size(182, 25);
-            this.infoSaldo.TabIndex = 5;
-            this.infoSaldo.Text = "Twoje saldo";
-            this.infoSaldo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // infoZaklad
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.infoZaklad, 2);
-            this.infoZaklad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infoZaklad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.infoZaklad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.infoZaklad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.infoZaklad.Location = new System.Drawing.Point(544, 425);
-            this.infoZaklad.Name = "infoZaklad";
-            this.infoZaklad.Size = new System.Drawing.Size(182, 25);
-            this.infoZaklad.TabIndex = 6;
-            this.infoZaklad.Text = "Zakład";
-            this.infoZaklad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // saldo
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.saldo, 2);
-            this.saldo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.saldo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.saldo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.saldo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.saldo.Location = new System.Drawing.Point(215, 450);
-            this.saldo.Name = "saldo";
-            this.saldo.Size = new System.Drawing.Size(182, 25);
-            this.saldo.TabIndex = 7;
-            this.saldo.Text = "{saldo}";
-            this.saldo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // zaklad
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.zaklad, 2);
-            this.zaklad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zaklad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.zaklad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.zaklad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.zaklad.Location = new System.Drawing.Point(544, 450);
-            this.zaklad.Name = "zaklad";
-            this.zaklad.Size = new System.Drawing.Size(182, 25);
-            this.zaklad.TabIndex = 8;
-            this.zaklad.Text = "{zakład}";
-            this.zaklad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // infoWynik
-            // 
-            this.infoWynik.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.infoWynik.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.infoWynik.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.infoWynik.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.infoWynik.Location = new System.Drawing.Point(403, 428);
-            this.infoWynik.Name = "infoWynik";
-            this.infoWynik.Size = new System.Drawing.Size(135, 19);
-            this.infoWynik.TabIndex = 9;
-            this.infoWynik.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // OknoBandyta
             // 
