@@ -90,6 +90,12 @@
     <EmbeddedResource Include="OknoBlackJack.resx">
       <DependentUpon>OknoBlackJack.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OknoKoloFortuny.resx">
+      <DependentUpon>OknoKoloFortuny.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OknoRuletka.resx">
+      <DependentUpon>OknoRuletka.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -16,5 +16,10 @@ namespace Hipcio
         {
             InitializeComponent();
         }
+
+        private void infoWynik_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
