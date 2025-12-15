@@ -111,7 +111,9 @@ namespace Hipcio
             new Karta(0, "Resources/karty/ace_of_spades.png")
         };
         int[] posiadane;
-
+        int sumaGracza;
+        int sumaKrupiera;
+        Boolean runda = true;
         public OknoBlackJack()
         {
             InitializeComponent();
@@ -126,29 +128,98 @@ namespace Hipcio
             zaklad.Visible = false;
         }
 
-        private int Losuj()
+        public void Losuj()
         {
             int los;
 
-            // Jeżeli posiadane nie istnieje, twórz pustą listę
             if (posiadane == null)
                 posiadane = new int[0];
 
             do
             {
-                los = rand.Next(taliaKart.Length);  // losuj kartę
+                los = rand.Next(taliaKart.Length);
+                label4.Text = taliaKart[los].Wartosc.ToString();
             }
-            while (posiadane.Contains(los));        // powtarzaj aż trafisz nieużytą
+            while (posiadane.Contains(los));
 
-            // dodaj nową kartę do tablicy "posiadane"
+            // zapamiętaj kartę
             posiadane = posiadane.Concat(new int[] { los }).ToArray();
-            return los;
+
+            // ===== TURA GRACZA =====
+            if (runda == true)
+            {
+                // AS
+                if (taliaKart[los].Wartosc == 0)
+                    sumaGracza += (sumaGracza + 11 <= 21) ? 11 : 1;
+                else
+                    sumaGracza += taliaKart[los].Wartosc;
+
+                wynik.Text = sumaGracza.ToString();
+
+                if (sumaGracza > 21)
+                {
+                    MessageBox.Show("Przegrałeś!");
+                    button1.Enabled = false;
+                    return;
+                }
+
+                // zmiana tury na krupiera
+                runda = false;
+                return;
+            }
+
+            // ===== TURA KRUPIERA =====
+            if (runda == false)
+            {
+                if (taliaKart[los].Wartosc == 0)
+                    sumaKrupiera += (sumaKrupiera + 11 <= 21) ? 11 : 1;
+                else
+                    sumaKrupiera += taliaKart[los].Wartosc;
+
+                krukier.Text = sumaKrupiera.ToString();
+
+                if (sumaKrupiera > 21)
+                {
+                    MessageBox.Show("Krupier bust! Wygrałeś!");
+                    button1.Enabled = false;
+                    return;
+                }
+
+                // krupier dobiera do 17
+                if (sumaKrupiera < 17)
+                {
+                    Losuj(); // krupier dobiera dalej
+                }
+                else
+                {
+                    // porównanie wyników
+                    if (sumaGracza > sumaKrupiera)
+                        MessageBox.Show("Wygrałeś!");
+                    else if (sumaGracza < sumaKrupiera)
+                        MessageBox.Show("Przegrałeś!");
+                    else
+                        MessageBox.Show("Remis!");
+
+                    button1.Enabled = false;
+                }
+            }
         }
+
         private void wyświetl()
         { 
         
             
         
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Losuj();
         }
     }
 }
