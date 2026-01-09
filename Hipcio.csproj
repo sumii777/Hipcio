@@ -90,6 +90,9 @@
     <EmbeddedResource Include="OknoBlackJack.resx">
       <DependentUpon>OknoBlackJack.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OknoMenu.resx">
+      <DependentUpon>OknoMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -133,6 +136,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\puste.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ruletka.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bandyta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kolo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bjack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\autorzy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saldo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -150,5 +150,10 @@ namespace Hipcio
             
         
         }
+
+        private void OknoBlackJack_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
