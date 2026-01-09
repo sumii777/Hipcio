@@ -73,6 +73,16 @@ namespace Hipcio.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap autorzy1 {
+            get {
+                object obj = ResourceManager.GetObject("autorzy1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bandyta {
             get {
                 object obj = ResourceManager.GetObject("bandyta", resourceCulture);
