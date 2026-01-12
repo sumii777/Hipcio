@@ -38,11 +38,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.infoWynik = new System.Windows.Forms.Label();
             this.infoGra = new System.Windows.Forms.Label();
-            this.wynik = new System.Windows.Forms.Label();
-            this.krukier = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.labelGracz = new System.Windows.Forms.Label();
+            this.labelKrupier = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.dobierz = new System.Windows.Forms.Button();
+            this.hold = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,11 +67,12 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.infoWynik, 3, 7);
             this.tableLayoutPanel1.Controls.Add(this.infoGra, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.wynik, 5, 3);
-            this.tableLayoutPanel1.Controls.Add(this.krukier, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.labelGracz, 5, 3);
+            this.tableLayoutPanel1.Controls.Add(this.labelKrupier, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.dobierz, 5, 4);
+            this.tableLayoutPanel1.Controls.Add(this.hold, 1, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -79,15 +81,14 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.57884F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.381238F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(944, 501);
             this.tableLayoutPanel1.TabIndex = 1;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // zaklad
             // 
@@ -158,7 +159,7 @@
             this.przyciskGraj.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.przyciskGraj.Location = new System.Drawing.Point(403, 303);
             this.przyciskGraj.Name = "przyciskGraj";
-            this.przyciskGraj.Size = new System.Drawing.Size(135, 44);
+            this.przyciskGraj.Size = new System.Drawing.Size(135, 47);
             this.przyciskGraj.TabIndex = 12;
             this.przyciskGraj.TabStop = false;
             this.przyciskGraj.Text = "Graj";
@@ -221,35 +222,25 @@
             this.infoGra.Text = "Black Jack";
             this.infoGra.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // wynik
+            // labelGracz
             // 
-            this.wynik.AutoSize = true;
-            this.wynik.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.wynik.Location = new System.Drawing.Point(591, 225);
-            this.wynik.Name = "wynik";
-            this.wynik.Size = new System.Drawing.Size(35, 13);
-            this.wynik.TabIndex = 17;
-            this.wynik.Text = "label3";
+            this.labelGracz.AutoSize = true;
+            this.labelGracz.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.labelGracz.Location = new System.Drawing.Point(591, 225);
+            this.labelGracz.Name = "labelGracz";
+            this.labelGracz.Size = new System.Drawing.Size(35, 13);
+            this.labelGracz.TabIndex = 17;
+            this.labelGracz.Text = "label3";
             // 
-            // krukier
+            // labelKrupier
             // 
-            this.krukier.AutoSize = true;
-            this.krukier.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.krukier.Location = new System.Drawing.Point(215, 225);
-            this.krukier.Name = "krukier";
-            this.krukier.Size = new System.Drawing.Size(35, 13);
-            this.krukier.TabIndex = 18;
-            this.krukier.Text = "label3";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(591, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.labelKrupier.AutoSize = true;
+            this.labelKrupier.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelKrupier.Location = new System.Drawing.Point(215, 225);
+            this.labelKrupier.Name = "labelKrupier";
+            this.labelKrupier.Size = new System.Drawing.Size(35, 13);
+            this.labelKrupier.TabIndex = 18;
+            this.labelKrupier.Text = "label3";
             // 
             // label3
             // 
@@ -270,6 +261,37 @@
             this.label4.TabIndex = 21;
             this.label4.Text = "label4";
             // 
+            // dobierz
+            // 
+            this.dobierz.BackColor = System.Drawing.Color.Black;
+            this.dobierz.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dobierz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dobierz.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.dobierz.ForeColor = System.Drawing.Color.White;
+            this.dobierz.Location = new System.Drawing.Point(591, 303);
+            this.dobierz.Name = "dobierz";
+            this.dobierz.Size = new System.Drawing.Size(135, 47);
+            this.dobierz.TabIndex = 19;
+            this.dobierz.Text = "dobeirz";
+            this.dobierz.UseVisualStyleBackColor = false;
+            this.dobierz.Visible = false;
+            this.dobierz.Click += new System.EventHandler(this.dobierz_Click);
+            // 
+            // hold
+            // 
+            this.hold.BackColor = System.Drawing.Color.Black;
+            this.hold.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hold.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.hold.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.hold.ForeColor = System.Drawing.Color.White;
+            this.hold.Location = new System.Drawing.Point(215, 303);
+            this.hold.Name = "hold";
+            this.hold.Size = new System.Drawing.Size(135, 47);
+            this.hold.TabIndex = 22;
+            this.hold.Text = "hold";
+            this.hold.UseVisualStyleBackColor = false;
+            this.hold.Click += new System.EventHandler(this.hold_Click);
+            // 
             // OknoBlackJack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,6 +301,7 @@
             this.Name = "OknoBlackJack";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.OknoBlackJack_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -297,10 +320,11 @@
         private System.Windows.Forms.Label saldo;
         private System.Windows.Forms.Label infoZaklad;
         private System.Windows.Forms.Label zaklad;
-        private System.Windows.Forms.Label wynik;
-        private System.Windows.Forms.Label krukier;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label labelGracz;
+        private System.Windows.Forms.Label labelKrupier;
+        private System.Windows.Forms.Button dobierz;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button hold;
     }
 }
