@@ -113,6 +113,16 @@ namespace Hipcio.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap doladuj {
+            get {
+                object obj = ResourceManager.GetObject("doladuj", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dzwonek {
             get {
                 object obj = ResourceManager.GetObject("dzwonek", resourceCulture);
@@ -136,6 +146,16 @@ namespace Hipcio.Properties {
         internal static System.Drawing.Bitmap menu {
             get {
                 object obj = ResourceManager.GetObject("menu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menu1 {
+            get {
+                object obj = ResourceManager.GetObject("menu1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -176,6 +196,16 @@ namespace Hipcio.Properties {
         internal static System.Drawing.Bitmap saldo {
             get {
                 object obj = ResourceManager.GetObject("saldo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap saldo1 {
+            get {
+                object obj = ResourceManager.GetObject("saldo1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
