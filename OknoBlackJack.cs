@@ -63,7 +63,64 @@ namespace Hipcio
             // Karty od 2 do 10 (każda po 4 kolory)
             new Karta(2, Properties.Resources._2_of_clubs),
             new Karta(2, Properties.Resources._2_of_diamonds),
-            // ... (pominięto pozostałe karty dla czytelności)
+            new Karta(2, Properties.Resources._2_of_hearts),
+            new Karta(2, Properties.Resources._2_of_spades),
+
+            new Karta(3, Properties.Resources._3_of_clubs),
+            new Karta(3, Properties.Resources._3_of_diamonds),
+            new Karta(3, Properties.Resources._3_of_hearts),
+            new Karta(3, Properties.Resources._3_of_spades),
+
+            new Karta(4, Properties.Resources._4_of_clubs),
+            new Karta(4, Properties.Resources._4_of_diamonds),
+            new Karta(4, Properties.Resources._4_of_hearts),
+            new Karta(4, Properties.Resources._4_of_spades),
+
+            new Karta(5, Properties.Resources._5_of_clubs),
+            new Karta(5, Properties.Resources._5_of_diamonds),
+            new Karta(5, Properties.Resources._5_of_hearts),
+            new Karta(5, Properties.Resources._5_of_spades),
+
+            new Karta(6, Properties.Resources._6_of_clubs),
+            new Karta(6, Properties.Resources._6_of_diamonds),
+            new Karta(6, Properties.Resources._6_of_hearts),
+            new Karta(6, Properties.Resources._6_of_spades),
+
+            new Karta(7, Properties.Resources._7_of_clubs),
+            new Karta(7, Properties.Resources._7_of_diamonds),
+            new Karta(7, Properties.Resources._7_of_hearts),
+            new Karta(7, Properties.Resources._7_of_spades),
+
+            new Karta(8, Properties.Resources._8_of_clubs),
+            new Karta(8, Properties.Resources._8_of_diamonds),
+            new Karta(8, Properties.Resources._8_of_hearts),
+            new Karta(8, Properties.Resources._8_of_spades),
+
+            new Karta(9, Properties.Resources._9_of_clubs),
+            new Karta(9, Properties.Resources._9_of_diamonds),
+            new Karta(9, Properties.Resources._9_of_hearts),
+            new Karta(9, Properties.Resources._9_of_spades),
+
+            new Karta(10, Properties.Resources._10_of_clubs),
+            new Karta(10, Properties.Resources._10_of_diamonds),
+            new Karta(10, Properties.Resources._10_of_hearts),
+            new Karta(10, Properties.Resources._10_of_spades),
+            
+            // Figury (wszystkie wartość 10)
+            new Karta(10, Properties.Resources.jack_of_clubs2),
+            new Karta(10, Properties.Resources.jack_of_diamonds2),
+            new Karta(10, Properties.Resources.jack_of_hearts2),
+            new Karta(10, Properties.Resources.jack_of_spades2),
+
+            new Karta(10, Properties.Resources.queen_of_clubs2),
+            new Karta(10, Properties.Resources.queen_of_diamonds2),
+            new Karta(10, Properties.Resources.queen_of_hearts2),
+            new Karta(10, Properties.Resources.queen_of_spades2),
+
+            new Karta(10, Properties.Resources.king_of_clubs2),
+            new Karta(10, Properties.Resources.king_of_diamonds2),
+            new Karta(10, Properties.Resources.king_of_hearts2),
+            new Karta(10, Properties.Resources.king_of_spades2),
             
             // Asy (wartość 0 - specjalna obsługa)
             new Karta(0, Properties.Resources.ace_of_clubs),
@@ -82,6 +139,14 @@ namespace Hipcio
 
             // Podpięcie obsługi zdarzeń
             this.Load += OknoBlackJack_Load;
+            this.Resize += (s, e) =>
+            {
+                if (obrazkiKartGracza != null && obrazkiKartKrupiera != null)
+                {
+                    UlozKartyGracza();
+                    UlozKartyKrupiera();
+                }
+            };
 
             // Inicjalizacja salda i ustawienie domyślnego zakładu
             saldo.Text = aktualneSaldo.ToString();
@@ -188,6 +253,7 @@ namespace Hipcio
             infoZaklad.Visible = false;
             saldo.Visible = false;
             zaklad.Visible = false;
+            infoGra.Visible = false;
 
             // Pokazanie elementów interfejsu gry
             dobierz.Enabled = true;
@@ -273,7 +339,7 @@ namespace Hipcio
         private int LosujKarte()
         {
             // 52 karty + back, więc -1
-            int maxKart = taliaKart.Length -1;
+            int maxKart = taliaKart.Length - 1;
 
             // ZABEZPIECZENIE – nie ma już kart
             if (uzyteKarty.Count >= maxKart)
@@ -292,7 +358,6 @@ namespace Hipcio
             return los;
         }
 
-
         // Dodanie karty do ręki gracza i aktualizacja interfejsu
         private void DodajKarteGraczowi(int indeksKarty)
         {
@@ -310,7 +375,6 @@ namespace Hipcio
             // Przeliczenie i wyświetlenie nowej sumy
             sumaGracza = ObliczWartoscReki(kartyGracza);
             labelGracz.Text = sumaGracza.ToString();
-
         }
 
         // Dodanie karty do ręki krupiera i aktualizacja interfejsu
@@ -341,25 +405,32 @@ namespace Hipcio
         // Układanie kart krupiera w poziomie
         private void UlozKartyKrupiera()
         {
-            int cardWidth = 70;      // Szerokość karty
-            int spacing = 20;        // Odstęp między kartami
+            int cardWidth = 70;      // Szerokość karty (jak w UtworzKarte)
+            int spacing = 10;        // Odstęp między kartami
             int margin = 40;         // Margines od krawędzi
 
-            int count = indeksKartyKrupiera;
+            // Policz WIDOCZNE karty
+            int count = 0;
+            for (int i = 0; i < obrazkiKartKrupiera.Length; i++)
+            {
+                if (obrazkiKartKrupiera[i] != null && obrazkiKartKrupiera[i].Visible)
+                    count++;
+                else
+                    break;
+            }
+
             if (count == 0) return;
 
             // Obliczanie pozycji startowej dla wyśrodkowania
             int zoneWidth = (ClientSize.Width / 2) - margin;
             int totalWidth = count * cardWidth + (count - 1) * spacing;
             int startX = margin + (zoneWidth - totalWidth) / 2;
-            int y = 140;  // Stała pozycja Y dla krupiera
+            int y = 30;  // Stała pozycja Y dla krupiera
 
             // Ustawianie pozycji każdej karty
             for (int i = 0; i < count; i++)
             {
-                obrazkiKartKrupiera[i].Location =
-                    new Point(startX + i * (cardWidth + spacing), y);
-
+                obrazkiKartKrupiera[i].Location = new Point(startX + i * (cardWidth + spacing), y);
                 obrazkiKartKrupiera[i].BringToFront();
             }
         }
@@ -367,11 +438,20 @@ namespace Hipcio
         // Układanie kart gracza w poziomie
         private void UlozKartyGracza()
         {
-            int cardWidth = 70;      // Szerokość karty
-            int spacing = 20;        // Odstęp między kartami
+            int cardWidth = 70;      // Szerokość karty (jak w UtworzKarte)
+            int spacing = 10;        // Odstęp między kartami
             int margin = 40;         // Margines od krawędzi
 
-            int count = indeksKartyGracza;
+            // Policz WIDOCZNE karty
+            int count = 0;
+            for (int i = 0; i < obrazkiKartGracza.Length; i++)
+            {
+                if (obrazkiKartGracza[i] != null && obrazkiKartGracza[i].Visible)
+                    count++;
+                else
+                    break;
+            }
+
             if (count == 0) return;
 
             // Obliczanie pozycji startowej (prawa połowa ekranu)
@@ -379,14 +459,12 @@ namespace Hipcio
             int zoneWidth = (ClientSize.Width / 2) - margin;
             int totalWidth = count * cardWidth + (count - 1) * spacing;
             int startX = zoneStartX + (zoneWidth - totalWidth) / 2;
-            int y = ClientSize.Height - 170;  // Dolna część ekranu
+            int y = 30;  // Pozycja Y dla gracza
 
             // Ustawianie pozycji każdej karty
             for (int i = 0; i < count; i++)
             {
-                obrazkiKartGracza[i].Location =
-                    new Point(startX + i * (cardWidth + spacing), y);
-
+                obrazkiKartGracza[i].Location = new Point(startX + i * (cardWidth + spacing), y);
                 obrazkiKartGracza[i].BringToFront();
             }
         }
@@ -462,14 +540,12 @@ namespace Hipcio
                 {
                     // Remis – zwrot zakładu
                     aktualneSaldo += aktualnyZaklad;  // Zwrot zakładu
-                    saldo.Text = aktualneSaldo.ToString();
                     KoniecGry("Remis – oboje mają Blackjacka!", false, true, true);
                 }
                 else
                 {
                     // Blackjack = 3:2 (gracz już zapłacił zakład na starcie)
                     aktualneSaldo += (int)(aktualnyZaklad * 2.5);
-                    saldo.Text = aktualneSaldo.ToString();
                     KoniecGry("Blackjack! Wygrana 3:2", true, false, true);
                 }
             }
@@ -498,7 +574,6 @@ namespace Hipcio
                     aktualneSaldo += aktualnyZaklad;
             }
 
-            saldo.Text = aktualneSaldo.ToString();
 
             // Tylko jeśli jeszcze nie pokazano
             if (pierwszaKartaKrupieraZakryta)
@@ -523,15 +598,17 @@ namespace Hipcio
         {
             if (koniecGry || !runda) return;  // Sprawdzenie czy można grać
 
+            // Dodanie karty
+            int los = LosujKarte();
+            kartyGracza.Add(los);
+            DodajKarteGraczowi(los);
+
+            // Sprawdzenie BUST po dodaniu karty
             if (sumaGracza > 21)
             {
                 KoniecGry("Bust! Przegrałeś!", false);
                 return;
             }
-
-            int los = LosujKarte();
-            kartyGracza.Add(los);
-            DodajKarteGraczowi(los);
         }
 
         // Obsługa przycisku zakończenia tury przez gracza
@@ -540,9 +617,6 @@ namespace Hipcio
             try
             {
                 if (koniecGry || !runda) return;
-
-                if (sumaGracza == 21 && kartyGracza.Count == 2)
-                    return;
 
                 runda = false;
                 DobierzKartyKrupiera();
@@ -565,8 +639,6 @@ namespace Hipcio
             hold.Visible = false;
             labelGracz.Visible = false;
             labelKrupier.Visible = false;
-
         }
-
     }
 }
