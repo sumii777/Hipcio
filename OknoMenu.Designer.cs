@@ -65,7 +65,7 @@
             this.panel2.Controls.Add(this.bjack);
             this.panel2.Location = new System.Drawing.Point(8, 8);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(801, 37);
+            this.panel2.Size = new System.Drawing.Size(801, 43);
             this.panel2.TabIndex = 2;
             // 
             // bandyta

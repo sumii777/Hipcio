@@ -22,32 +22,54 @@ namespace Hipcio
 
         }
 
+        OknoRuletka rl = new OknoRuletka();
+        OknoBlackJack bj = new OknoBlackJack();
+        OknoKoloFortuny kl = new OknoKoloFortuny();
+        OknoBandyta bt = new OknoBandyta();
+        
         private void bjack_Click(object sender, EventArgs e)
         {
-            OknoBlackJack bj = new OknoBlackJack();
-
             bj.StartPosition = FormStartPosition.Manual;
             bj.Location = this.Location;
 
             this.Hide();
             bj.Show();
+            bj.BringToFront();
 
             bj.FormClosed += (s, args) => this.Show();
         }
 
         private void ruletka_Click(object sender, EventArgs e)
         {
+            rl.StartPosition = FormStartPosition.Manual;
+            rl.Location = this.Location;
 
+            this.Hide();
+            rl.Show();
+
+            rl.FormClosed += (s, args) => this.Show();
         }
 
         private void kolo_Click(object sender, EventArgs e)
         {
+            kl.StartPosition = FormStartPosition.Manual;
+            kl.Location = this.Location;
 
+            this.Hide();
+            kl.Show();
+
+            kl.FormClosed += (s, args) => this.Show();
         }
 
         private void bandyta_Click(object sender, EventArgs e)
         {
+            bt.StartPosition = FormStartPosition.Manual;
+            bt.Location = this.Location;
 
+            this.Hide();
+            bt.Show();
+
+            bt.FormClosed += (s, args) => this.Show();
         }
 
         private void doladuj_Click(object sender, EventArgs e)
