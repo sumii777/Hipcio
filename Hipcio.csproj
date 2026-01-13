@@ -140,5 +140,23 @@
   <ItemGroup>
     <None Include="Resources\puste.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wisnia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sliwka.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hipopotam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dzwonek.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pomarancza.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\krewetka.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
