@@ -133,6 +133,26 @@ namespace Hipcio.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hipekkasyno {
+            get {
+                object obj = ResourceManager.GetObject("hipekkasyno", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hipekkasyno1 {
+            get {
+                object obj = ResourceManager.GetObject("hipekkasyno1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap kolo {
             get {
                 object obj = ResourceManager.GetObject("kolo", resourceCulture);

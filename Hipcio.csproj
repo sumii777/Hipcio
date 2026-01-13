@@ -176,5 +176,11 @@
   <ItemGroup>
     <None Include="Resources\doladuj.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hipekkasyno.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hipekkasyno1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
