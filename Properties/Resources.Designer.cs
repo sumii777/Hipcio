@@ -63,26 +63,6 @@ namespace Hipcio.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bar {
-            get {
-                object obj = ResourceManager.GetObject("bar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap dzwonek {
-            get {
-                object obj = ResourceManager.GetObject("dzwonek", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap dzwonek1 {
             get {
                 object obj = ResourceManager.GetObject("dzwonek1", resourceCulture);
@@ -113,16 +93,6 @@ namespace Hipcio.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pomarancza {
-            get {
-                object obj = ResourceManager.GetObject("pomarancza", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap pomarancza1 {
             get {
                 object obj = ResourceManager.GetObject("pomarancza1", resourceCulture);
@@ -143,39 +113,9 @@ namespace Hipcio.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap siedem {
-            get {
-                object obj = ResourceManager.GetObject("siedem", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap sliwka {
-            get {
-                object obj = ResourceManager.GetObject("sliwka", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap sliwka1 {
             get {
                 object obj = ResourceManager.GetObject("sliwka1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap wisnia {
-            get {
-                object obj = ResourceManager.GetObject("wisnia", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
