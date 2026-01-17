@@ -21,12 +21,12 @@ namespace Hipcio
         //tablica przechowywująca zdjęcia, które mogą zostać wylsowoane
         Image[] zdjecia = new Image[]
         {
-            Hipcio.Properties.Resources.bar,
-            Hipcio.Properties.Resources.dzwonek,
-            Hipcio.Properties.Resources.pomarancza,
-            Hipcio.Properties.Resources.wisnia,
-            Hipcio.Properties.Resources.siedem,
-            Hipcio.Properties.Resources.sliwka
+            Hipcio.Properties.Resources.krewetka,
+            Hipcio.Properties.Resources.dzwonek1,
+            Hipcio.Properties.Resources.pomarancza1,
+            Hipcio.Properties.Resources.wisnia1,
+            Hipcio.Properties.Resources.hipopotam,
+            Hipcio.Properties.Resources.sliwka1
         };
 
         public OknoBandyta()

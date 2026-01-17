@@ -144,7 +144,13 @@
     <None Include="Resources\puste.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\wisnia1.png" />
+    <None Include="Resources\sliwka1.png" />
+    <None Include="Resources\pomarancza1.png" />
+    <None Include="Resources\krewetka.png" />
     <None Include="Resources\back.png" />
+    <None Include="Resources\dzwonek1.png" />
+    <None Include="Resources\hipopotam.png" />
     <Content Include="Resources\karty\10_of_clubs.png" />
     <Content Include="Resources\karty\10_of_diamonds.png" />
     <Content Include="Resources\karty\10_of_hearts.png" />
