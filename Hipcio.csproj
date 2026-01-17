@@ -140,5 +140,60 @@
   <ItemGroup>
     <None Include="Resources\puste.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.png" />
+    <Content Include="Resources\karty\10_of_clubs.png" />
+    <Content Include="Resources\karty\10_of_diamonds.png" />
+    <Content Include="Resources\karty\10_of_hearts.png" />
+    <Content Include="Resources\karty\10_of_spades.png" />
+    <Content Include="Resources\karty\2_of_clubs.png" />
+    <Content Include="Resources\karty\2_of_diamonds.png" />
+    <Content Include="Resources\karty\2_of_hearts.png" />
+    <Content Include="Resources\karty\2_of_spades.png" />
+    <Content Include="Resources\karty\3_of_clubs.png" />
+    <Content Include="Resources\karty\3_of_diamonds.png" />
+    <Content Include="Resources\karty\3_of_hearts.png" />
+    <Content Include="Resources\karty\3_of_spades.png" />
+    <Content Include="Resources\karty\4_of_clubs.png" />
+    <Content Include="Resources\karty\4_of_diamonds.png" />
+    <Content Include="Resources\karty\4_of_hearts.png" />
+    <Content Include="Resources\karty\4_of_spades.png" />
+    <Content Include="Resources\karty\5_of_clubs.png" />
+    <Content Include="Resources\karty\5_of_diamonds.png" />
+    <Content Include="Resources\karty\5_of_hearts.png" />
+    <Content Include="Resources\karty\5_of_spades.png" />
+    <Content Include="Resources\karty\6_of_clubs.png" />
+    <Content Include="Resources\karty\6_of_diamonds.png" />
+    <Content Include="Resources\karty\6_of_hearts.png" />
+    <Content Include="Resources\karty\6_of_spades.png" />
+    <Content Include="Resources\karty\7_of_clubs.png" />
+    <Content Include="Resources\karty\7_of_diamonds.png" />
+    <Content Include="Resources\karty\7_of_hearts.png" />
+    <Content Include="Resources\karty\7_of_spades.png" />
+    <Content Include="Resources\karty\8_of_clubs.png" />
+    <Content Include="Resources\karty\8_of_diamonds.png" />
+    <Content Include="Resources\karty\8_of_hearts.png" />
+    <Content Include="Resources\karty\8_of_spades.png" />
+    <Content Include="Resources\karty\9_of_clubs.png" />
+    <Content Include="Resources\karty\9_of_diamonds.png" />
+    <Content Include="Resources\karty\9_of_hearts.png" />
+    <Content Include="Resources\karty\9_of_spades.png" />
+    <Content Include="Resources\karty\ace_of_clubs.png" />
+    <Content Include="Resources\karty\ace_of_diamonds.png" />
+    <Content Include="Resources\karty\ace_of_hearts.png" />
+    <Content Include="Resources\karty\ace_of_spades.png" />
+    <Content Include="Resources\karty\jack_of_clubs2.png" />
+    <Content Include="Resources\karty\jack_of_diamonds2.png" />
+    <Content Include="Resources\karty\jack_of_hearts2.png" />
+    <Content Include="Resources\karty\jack_of_spades2.png" />
+    <Content Include="Resources\karty\king_of_clubs2.png" />
+    <Content Include="Resources\karty\king_of_diamonds2.png" />
+    <Content Include="Resources\karty\king_of_hearts2.png" />
+    <Content Include="Resources\karty\king_of_spades2.png" />
+    <Content Include="Resources\karty\queen_of_clubs2.png" />
+    <Content Include="Resources\karty\queen_of_diamonds2.png" />
+    <Content Include="Resources\karty\queen_of_hearts2.png" />
+    <Content Include="Resources\karty\queen_of_spades2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
