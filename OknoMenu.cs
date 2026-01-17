@@ -10,11 +10,95 @@ using System.Windows.Forms;
 
 namespace Hipcio
 {
+    // Główne okno menu aplikacji
     public partial class OknoMenu : Form
     {
+        // Konstruktor okna menu
         public OknoMenu()
         {
-            InitializeComponent();
+            InitializeComponent(); // Inicjalizacja komponentów formularza
+        }
+
+        // Metoda wywoływana podczas odświeżania panelu (aktualnie nieużywana)
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            // Miejsce na własne rysowanie w panelu
+        }
+
+        // Utworzenie instancji okien poszczególnych gier
+        OknoRuletka rl = new OknoRuletka();     // Okno ruletki
+        OknoBlackJack bj = new OknoBlackJack(); // Okno blackjacka
+        OknoKoloFortuny kl = new OknoKoloFortuny(); // Okno koła fortuny
+        OknoBandyta bt = new OknoBandyta();     // Okno jednorękiego bandyty
+
+        // Obsługa kliknięcia przycisku Blackjack
+        private void bjack_Click(object sender, EventArgs e)
+        {
+            // Ustawienie ręcznej pozycji nowego okna
+            bj.StartPosition = FormStartPosition.Manual;
+            // Ustawienie nowego okna w tym samym miejscu co menu
+            bj.Location = this.Location;
+
+            // Ukrycie okna menu
+            this.Hide();
+            // Wyświetlenie okna blackjacka
+            bj.Show();
+            // Przeniesienie okna na pierwszy plan
+            bj.BringToFront();
+
+            // Po zamknięciu okna blackjacka ponownie pokaż menu
+            bj.FormClosed += (s, args) => this.Show();
+        }
+
+        // Obsługa kliknięcia przycisku Ruletka
+        private void ruletka_Click(object sender, EventArgs e)
+        {
+            rl.StartPosition = FormStartPosition.Manual;
+            rl.Location = this.Location;
+
+            this.Hide();
+            rl.Show();
+
+            // Po zamknięciu ruletki wracamy do menu
+            rl.FormClosed += (s, args) => this.Show();
+        }
+
+        // Obsługa kliknięcia przycisku Koło Fortuny
+        private void kolo_Click(object sender, EventArgs e)
+        {
+            kl.StartPosition = FormStartPosition.Manual;
+            kl.Location = this.Location;
+
+            this.Hide();
+            kl.Show();
+
+            // Po zamknięciu koła fortuny pokaż menu
+            kl.FormClosed += (s, args) => this.Show();
+        }
+
+        // Obsługa kliknięcia przycisku Jednoręki Bandyta
+        private void bandyta_Click(object sender, EventArgs e)
+        {
+            bt.StartPosition = FormStartPosition.Manual;
+            bt.Location = this.Location;
+
+            this.Hide();
+            bt.Show();
+
+            // Po zamknięciu bandyty wróć do menu
+            bt.FormClosed += (s, args) => this.Show();
+        }
+
+        // Obsługa kliknięcia przycisku doładowania (jeszcze niezaimplementowana)
+        private void doladuj_Click(object sender, EventArgs e)
+        {
+            // Tu można dodać logikę doładowania środków
+        }
+
+        // Obsługa kliknięcia przycisku "Autorzy" (jeszcze niezaimplementowana)
+        private void autorzy_Click(object sender, EventArgs e)
+        {
+            // Tu można dodać okno z informacjami o autorach
         }
     }
 }
