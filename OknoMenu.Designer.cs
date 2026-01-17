@@ -30,14 +30,14 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.doladuj = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.autorzy = new System.Windows.Forms.Button();
             this.bandyta = new System.Windows.Forms.Button();
             this.kolo = new System.Windows.Forms.Button();
             this.ruletka = new System.Windows.Forms.Button();
             this.bjack = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.doladuj = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.autorzy = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -67,53 +67,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(801, 43);
             this.panel2.TabIndex = 2;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(6)))), ((int)(((byte)(38)))));
-            this.panel3.Controls.Add(this.doladuj);
-            this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.Controls.Add(this.autorzy);
-            this.panel3.Location = new System.Drawing.Point(665, 44);
-            this.panel3.MaximumSize = new System.Drawing.Size(136, 407);
-            this.panel3.MinimumSize = new System.Drawing.Size(136, 407);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(136, 407);
-            this.panel3.TabIndex = 4;
-            // 
-            // doladuj
-            // 
-            this.doladuj.BackgroundImage = global::Hipcio.Properties.Resources.doladuj;
-            this.doladuj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.doladuj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.doladuj.Location = new System.Drawing.Point(15, 103);
-            this.doladuj.Name = "doladuj";
-            this.doladuj.Size = new System.Drawing.Size(118, 28);
-            this.doladuj.TabIndex = 4;
-            this.doladuj.UseVisualStyleBackColor = true;
-            this.doladuj.Click += new System.EventHandler(this.doladuj_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Hipcio.Properties.Resources.saldo1;
-            this.pictureBox2.Location = new System.Drawing.Point(15, 21);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(118, 33);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
-            // 
-            // autorzy
-            // 
-            this.autorzy.BackgroundImage = global::Hipcio.Properties.Resources.autorzy1;
-            this.autorzy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.autorzy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.autorzy.Location = new System.Drawing.Point(15, 363);
-            this.autorzy.Name = "autorzy";
-            this.autorzy.Size = new System.Drawing.Size(118, 31);
-            this.autorzy.TabIndex = 4;
-            this.autorzy.UseVisualStyleBackColor = true;
-            this.autorzy.Click += new System.EventHandler(this.autorzy_Click);
             // 
             // bandyta
             // 
@@ -163,6 +116,53 @@
             this.bjack.UseVisualStyleBackColor = true;
             this.bjack.Click += new System.EventHandler(this.bjack_Click);
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(6)))), ((int)(((byte)(38)))));
+            this.panel3.Controls.Add(this.doladuj);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Controls.Add(this.autorzy);
+            this.panel3.Location = new System.Drawing.Point(665, 44);
+            this.panel3.MaximumSize = new System.Drawing.Size(136, 407);
+            this.panel3.MinimumSize = new System.Drawing.Size(136, 407);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(136, 407);
+            this.panel3.TabIndex = 4;
+            // 
+            // doladuj
+            // 
+            this.doladuj.BackgroundImage = global::Hipcio.Properties.Resources.doladuj;
+            this.doladuj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.doladuj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.doladuj.Location = new System.Drawing.Point(15, 103);
+            this.doladuj.Name = "doladuj";
+            this.doladuj.Size = new System.Drawing.Size(118, 28);
+            this.doladuj.TabIndex = 4;
+            this.doladuj.UseVisualStyleBackColor = true;
+            this.doladuj.Click += new System.EventHandler(this.doladuj_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Hipcio.Properties.Resources.saldo1;
+            this.pictureBox2.Location = new System.Drawing.Point(15, 21);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(118, 33);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
+            // 
+            // autorzy
+            // 
+            this.autorzy.BackgroundImage = global::Hipcio.Properties.Resources.autorzy1;
+            this.autorzy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.autorzy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.autorzy.Location = new System.Drawing.Point(15, 363);
+            this.autorzy.Name = "autorzy";
+            this.autorzy.Size = new System.Drawing.Size(118, 31);
+            this.autorzy.TabIndex = 4;
+            this.autorzy.UseVisualStyleBackColor = true;
+            this.autorzy.Click += new System.EventHandler(this.autorzy_Click);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Hipcio.Properties.Resources.menu1;
@@ -181,9 +181,11 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(816, 489);
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "OknoMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
