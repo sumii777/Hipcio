@@ -25,27 +25,22 @@ namespace Hipcio
             // Miejsce na własne rysowanie w panelu
         }
 
-        // Utworzenie instancji okien poszczególnych gier
-        OknoRuletka rl = new OknoRuletka();     // Okno ruletki
-        OknoBlackJack bj = new OknoBlackJack(); // Okno blackjacka
-        OknoKoloFortuny kl = new OknoKoloFortuny(); // Okno koła fortuny
-        OknoBandyta bt = new OknoBandyta();     // Okno jednorękiego bandyty
-
         // Obsługa kliknięcia przycisku Blackjack
         private void bjack_Click(object sender, EventArgs e)
         {
+            // Tworzenie nowej instancji za każdym razem
+            OknoBlackJack bj = new OknoBlackJack();
+
             // Ustawienie ręcznej pozycji nowego okna
             bj.StartPosition = FormStartPosition.Manual;
             // Ustawienie nowego okna w tym samym miejscu co menu
             bj.Location = this.Location;
-
             // Ukrycie okna menu
             this.Hide();
             // Wyświetlenie okna blackjacka
             bj.Show();
             // Przeniesienie okna na pierwszy plan
             bj.BringToFront();
-
             // Po zamknięciu okna blackjacka ponownie pokaż menu
             bj.FormClosed += (s, args) => this.Show();
         }
@@ -53,12 +48,12 @@ namespace Hipcio
         // Obsługa kliknięcia przycisku Ruletka
         private void ruletka_Click(object sender, EventArgs e)
         {
+            OknoRuletka rl = new OknoRuletka();
+
             rl.StartPosition = FormStartPosition.Manual;
             rl.Location = this.Location;
-
             this.Hide();
             rl.Show();
-
             // Po zamknięciu ruletki wracamy do menu
             rl.FormClosed += (s, args) => this.Show();
         }
@@ -66,12 +61,12 @@ namespace Hipcio
         // Obsługa kliknięcia przycisku Koło Fortuny
         private void kolo_Click(object sender, EventArgs e)
         {
+            OknoKoloFortuny kl = new OknoKoloFortuny();
+
             kl.StartPosition = FormStartPosition.Manual;
             kl.Location = this.Location;
-
             this.Hide();
             kl.Show();
-
             // Po zamknięciu koła fortuny pokaż menu
             kl.FormClosed += (s, args) => this.Show();
         }
@@ -79,12 +74,12 @@ namespace Hipcio
         // Obsługa kliknięcia przycisku Jednoręki Bandyta
         private void bandyta_Click(object sender, EventArgs e)
         {
+            OknoBandyta bt = new OknoBandyta();
+
             bt.StartPosition = FormStartPosition.Manual;
             bt.Location = this.Location;
-
             this.Hide();
             bt.Show();
-
             // Po zamknięciu bandyty wróć do menu
             bt.FormClosed += (s, args) => this.Show();
         }
