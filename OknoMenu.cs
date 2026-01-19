@@ -19,10 +19,10 @@ namespace Hipcio
             InitializeComponent(); // Inicjalizacja komponentów formularza
         }
 
-        // Metoda wywoływana podczas odświeżania panelu (aktualnie nieużywana)
+        
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            // Miejsce na własne rysowanie w panelu
+            
         }
 
         // Obsługa kliknięcia przycisku Blackjack
@@ -84,13 +84,13 @@ namespace Hipcio
             bt.FormClosed += (s, args) => this.Show();
         }
 
-        // Obsługa kliknięcia przycisku doładowania (jeszcze niezaimplementowana)
+        // Obsługa kliknięcia przycisku doładowania
         private void doladuj_Click(object sender, EventArgs e)
         {
             // Tu można dodać logikę doładowania środków
         }
 
-        // Obsługa kliknięcia przycisku "Autorzy" (jeszcze niezaimplementowana)
+        // Obsługa kliknięcia przycisku "Autorzy"
         private void autorzy_Click(object sender, EventArgs e)
         {
             // Tu można dodać okno z informacjami o autorach

@@ -16,7 +16,7 @@ namespace Hipcio
         private Random rand = new Random();
 
         // Tablica z możliwymi wygranych (mnożniki)
-        private int[] wygraneWartosci = { 0, 2, 5, 10, 20, 50, 100, 0 };
+        private int[] wygraneWartosci = { 0, 100, 0, 2, 0, 10, 0, 2 };
 
         // Tablica z etykietami wygranych
         private Label[] wygraneLabels;
@@ -196,12 +196,14 @@ namespace Hipcio
 
         private void infoWynik_Click(object sender, EventArgs e)
         {
-            // Metoda nieużywana
+            
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-            // Metoda nieużywana
+            
         }
+
+       
     }
 }
