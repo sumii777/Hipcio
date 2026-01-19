@@ -59,7 +59,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 461);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // infoGra
@@ -69,10 +69,10 @@
             this.infoGra.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
             this.infoGra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
             this.infoGra.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.infoGra.Location = new System.Drawing.Point(224, 161);
+            this.infoGra.Location = new System.Drawing.Point(183, 157);
             this.infoGra.Name = "infoGra";
             this.tableLayoutPanel1.SetRowSpan(this.infoGra, 2);
-            this.infoGra.Size = new System.Drawing.Size(533, 115);
+            this.infoGra.Size = new System.Drawing.Size(434, 112);
             this.infoGra.TabIndex = 4;
             this.infoGra.Text = "NIEDŁUGO DOSTĘPNE";
             this.infoGra.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -81,10 +81,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 461);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MaximumSize = new System.Drawing.Size(816, 489);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "OknoRuletka";
-            this.Text = "Form1";
+            this.ShowIcon = false;
+            this.Text = "Ruletka";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

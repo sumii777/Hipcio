@@ -60,9 +60,9 @@ namespace Hipcio
             timerAnimacji.Tick += TimerAnimacji_Tick;
 
             // Ustaw początkowe obrazy
-            obrazWynik1.Image = zdjecia[0];
-            obrazWynik2.Image = zdjecia[0];
-            obrazWynik3.Image = zdjecia[0];
+            obrazWynik1.Image = Hipcio.Properties.Resources.puste;
+            obrazWynik2.Image = Hipcio.Properties.Resources.puste;
+            obrazWynik3.Image = Hipcio.Properties.Resources.puste;
         }
 
         private void button1_Click(object sender, EventArgs e)

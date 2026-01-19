@@ -35,10 +35,10 @@
             this.infoZaklad = new System.Windows.Forms.Label();
             this.infoSaldo = new System.Windows.Forms.Label();
             this.przyciskKrec = new System.Windows.Forms.Button();
-            this.infoGra = new System.Windows.Forms.Label();
             this.obrazWynik1 = new System.Windows.Forms.PictureBox();
             this.obrazWynik2 = new System.Windows.Forms.PictureBox();
             this.obrazWynik3 = new System.Windows.Forms.PictureBox();
+            this.infoGra = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik2)).BeginInit();
@@ -80,7 +80,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(944, 501);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // infoWynik
@@ -89,9 +89,9 @@
             this.infoWynik.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.infoWynik.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
             this.infoWynik.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.infoWynik.Location = new System.Drawing.Point(403, 428);
+            this.infoWynik.Location = new System.Drawing.Point(343, 382);
             this.infoWynik.Name = "infoWynik";
-            this.infoWynik.Size = new System.Drawing.Size(135, 19);
+            this.infoWynik.Size = new System.Drawing.Size(114, 19);
             this.infoWynik.TabIndex = 9;
             this.infoWynik.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -102,9 +102,9 @@
             this.zaklad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.zaklad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
             this.zaklad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.zaklad.Location = new System.Drawing.Point(544, 450);
+            this.zaklad.Location = new System.Drawing.Point(463, 403);
             this.zaklad.Name = "zaklad";
-            this.zaklad.Size = new System.Drawing.Size(182, 25);
+            this.zaklad.Size = new System.Drawing.Size(154, 22);
             this.zaklad.TabIndex = 8;
             this.zaklad.Text = "{zakład}";
             this.zaklad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -116,9 +116,9 @@
             this.saldo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.saldo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
             this.saldo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.saldo.Location = new System.Drawing.Point(215, 450);
+            this.saldo.Location = new System.Drawing.Point(183, 403);
             this.saldo.Name = "saldo";
-            this.saldo.Size = new System.Drawing.Size(182, 25);
+            this.saldo.Size = new System.Drawing.Size(154, 22);
             this.saldo.TabIndex = 7;
             this.saldo.Text = "{saldo}";
             this.saldo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -130,9 +130,9 @@
             this.infoZaklad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.infoZaklad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
             this.infoZaklad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.infoZaklad.Location = new System.Drawing.Point(544, 425);
+            this.infoZaklad.Location = new System.Drawing.Point(463, 381);
             this.infoZaklad.Name = "infoZaklad";
-            this.infoZaklad.Size = new System.Drawing.Size(182, 25);
+            this.infoZaklad.Size = new System.Drawing.Size(154, 22);
             this.infoZaklad.TabIndex = 6;
             this.infoZaklad.Text = "Zakład";
             this.infoZaklad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -144,9 +144,9 @@
             this.infoSaldo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.infoSaldo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
             this.infoSaldo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.infoSaldo.Location = new System.Drawing.Point(215, 425);
+            this.infoSaldo.Location = new System.Drawing.Point(183, 381);
             this.infoSaldo.Name = "infoSaldo";
-            this.infoSaldo.Size = new System.Drawing.Size(182, 25);
+            this.infoSaldo.Size = new System.Drawing.Size(154, 22);
             this.infoSaldo.TabIndex = 5;
             this.infoSaldo.Text = "Twoje saldo";
             this.infoSaldo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -162,28 +162,14 @@
             this.przyciskKrec.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.przyciskKrec.ForeColor = System.Drawing.Color.White;
             this.przyciskKrec.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.przyciskKrec.Location = new System.Drawing.Point(403, 353);
+            this.przyciskKrec.Location = new System.Drawing.Point(343, 317);
             this.przyciskKrec.Name = "przyciskKrec";
-            this.przyciskKrec.Size = new System.Drawing.Size(135, 44);
+            this.przyciskKrec.Size = new System.Drawing.Size(114, 39);
             this.przyciskKrec.TabIndex = 4;
             this.przyciskKrec.TabStop = false;
             this.przyciskKrec.Text = "Kręć";
             this.przyciskKrec.UseVisualStyleBackColor = false;
             this.przyciskKrec.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // infoGra
-            // 
-            this.infoGra.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.infoGra, 5);
-            this.infoGra.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
-            this.infoGra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.infoGra.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.infoGra.Location = new System.Drawing.Point(215, 75);
-            this.infoGra.Name = "infoGra";
-            this.infoGra.Size = new System.Drawing.Size(511, 100);
-            this.infoGra.TabIndex = 3;
-            this.infoGra.Text = "Jednoręki Bandyta";
-            this.infoGra.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // obrazWynik1
             // 
@@ -191,10 +177,10 @@
             this.obrazWynik1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.obrazWynik1.Enabled = false;
             this.obrazWynik1.Image = global::Hipcio.Properties.Resources.puste;
-            this.obrazWynik1.Location = new System.Drawing.Point(212, 225);
+            this.obrazWynik1.Location = new System.Drawing.Point(180, 202);
             this.obrazWynik1.Margin = new System.Windows.Forms.Padding(0);
             this.obrazWynik1.Name = "obrazWynik1";
-            this.obrazWynik1.Size = new System.Drawing.Size(141, 75);
+            this.obrazWynik1.Size = new System.Drawing.Size(120, 67);
             this.obrazWynik1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.obrazWynik1.TabIndex = 0;
             this.obrazWynik1.TabStop = false;
@@ -205,10 +191,10 @@
             this.obrazWynik2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.obrazWynik2.Enabled = false;
             this.obrazWynik2.Image = global::Hipcio.Properties.Resources.puste;
-            this.obrazWynik2.Location = new System.Drawing.Point(400, 225);
+            this.obrazWynik2.Location = new System.Drawing.Point(340, 202);
             this.obrazWynik2.Margin = new System.Windows.Forms.Padding(0);
             this.obrazWynik2.Name = "obrazWynik2";
-            this.obrazWynik2.Size = new System.Drawing.Size(141, 75);
+            this.obrazWynik2.Size = new System.Drawing.Size(120, 67);
             this.obrazWynik2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.obrazWynik2.TabIndex = 1;
             this.obrazWynik2.TabStop = false;
@@ -219,24 +205,41 @@
             this.obrazWynik3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.obrazWynik3.Enabled = false;
             this.obrazWynik3.Image = global::Hipcio.Properties.Resources.puste;
-            this.obrazWynik3.Location = new System.Drawing.Point(588, 225);
+            this.obrazWynik3.Location = new System.Drawing.Point(500, 202);
             this.obrazWynik3.Margin = new System.Windows.Forms.Padding(0);
             this.obrazWynik3.Name = "obrazWynik3";
-            this.obrazWynik3.Size = new System.Drawing.Size(141, 75);
+            this.obrazWynik3.Size = new System.Drawing.Size(120, 67);
             this.obrazWynik3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.obrazWynik3.TabIndex = 2;
             this.obrazWynik3.TabStop = false;
+            // 
+            // infoGra
+            // 
+            this.infoGra.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel1.SetColumnSpan(this.infoGra, 5);
+            this.infoGra.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold);
+            this.infoGra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
+            this.infoGra.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.infoGra.Location = new System.Drawing.Point(183, 67);
+            this.infoGra.Name = "infoGra";
+            this.infoGra.Size = new System.Drawing.Size(434, 90);
+            this.infoGra.TabIndex = 3;
+            this.infoGra.Text = "Jednoręki Bandyta";
+            this.infoGra.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // OknoBandyta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 501);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MinimumSize = new System.Drawing.Size(960, 540);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(816, 489);
+            this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "OknoBandyta";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Jednoręki bandyta";
+            this.Text = "Jednoręki Bandyta";
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik2)).EndInit();
