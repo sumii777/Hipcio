@@ -107,7 +107,14 @@ namespace Hipcio
         // Obsługa kliknięcia przycisku doładowania
         private void doladuj_Click(object sender, EventArgs e)
         {
-            // Tu można dodać logikę doładowania środków
+            doladuj dol = new doladuj();
+
+            dol.StartPosition = FormStartPosition.Manual;
+            dol.Location = this.Location;
+            this.Hide();
+            dol.Show();
+            // Po zamknięciu bandyty wróć do menu
+            dol.FormClosed += (s, args) => this.Show();
         }
 
         // Obsługa kliknięcia przycisku "Autorzy"
