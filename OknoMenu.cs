@@ -127,10 +127,6 @@ namespace Hipcio
             au.Show();
             // Po zamknięciu bandyty wróć do menu
             au.FormClosed += (s, args) => this.Show();
-        }
-
-        private void OknoMenu_Load(object sender, EventArgs e)
-        {
             WczytajLubUtworzPlik();
         }
     }
