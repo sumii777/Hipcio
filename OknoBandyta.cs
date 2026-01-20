@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,13 @@ namespace Hipcio
         // Licznik ticków timera
         private int tickCounter = 0;
 
+        // Zmienne do zarządzania saldem i zakładami
+        private int aktualneSaldo = 1000;  // Początkowe saldo gracza
+        private int aktualnyZaklad = 0;    // Aktualny zakład w rundzie
+
+        // Ścieżka do pliku z saldem
+        private string sciezkaPliku = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wartosc.txt");
+
         public OknoBandyta()
         {
             InitializeComponent();
@@ -63,12 +71,119 @@ namespace Hipcio
             obrazWynik1.Image = Hipcio.Properties.Resources.puste;
             obrazWynik2.Image = Hipcio.Properties.Resources.puste;
             obrazWynik3.Image = Hipcio.Properties.Resources.puste;
+
+            // Wczytanie salda z pliku
+            aktualneSaldo = WczytajLubUtworzPlik();
+
+            // Zakładam, że masz kontrolki saldo i zaklad (TextBox lub Label)
+            // Jeśli nie masz, dodaj je w designerze
+            if (saldo != null)
+                saldo.Text = aktualneSaldo.ToString();
+
+            if (zaklad != null)
+            {
+                zaklad.Text = "10";
+                // Dodanie walidacji pola zakładu
+                zaklad.Leave += Zaklad_Leave;
+            }
+        }
+
+        // Walidacja pola zakładu - jeśli nie liczba, ustaw 0
+        private void Zaklad_Leave(object sender, EventArgs e)
+        {
+            if (!int.TryParse(zaklad.Text, out int wartoscZakladu))
+            {
+                zaklad.Text = "0";
+                MessageBox.Show("Nieprawidłowa wartość zakładu. Ustawiono 0.", "Błąd",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (wartoscZakladu < 0)
+            {
+                zaklad.Text = "0";
+                MessageBox.Show("Zakład nie może być ujemny. Ustawiono 0.", "Błąd",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // Wczytywanie salda z pliku lub tworzenie pliku z domyślną wartością
+        int WczytajLubUtworzPlik()
+        {
+            try
+            {
+                if (!File.Exists(sciezkaPliku))
+                {
+                    File.WriteAllText(sciezkaPliku, "1000");
+                    return 1000;
+                }
+
+                string zawartosc = File.ReadAllText(sciezkaPliku).Trim();
+
+                if (int.TryParse(zawartosc, out int wartosc) && wartosc >= 0)
+                {
+                    return wartosc;
+                }
+
+                // Jeśli plik uszkodzony lub wartość ujemna
+                File.WriteAllText(sciezkaPliku, "1000");
+                return 1000;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd wczytywania salda: {ex.Message}\nUstawiono domyślne saldo 1000.",
+                    "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 1000;
+            }
+        }
+
+        // Zapisywanie aktualnego salda do pliku
+        private void ZapiszSaldoDoPliku()
+        {
+            try
+            {
+                File.WriteAllText(sciezkaPliku, aktualneSaldo.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd zapisywania salda: {ex.Message}",
+                    "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (czyGraWTrakcie)
                 return;
+
+            // Walidacja i pobranie zakładu
+            if (zaklad != null)
+            {
+                if (!int.TryParse(zaklad.Text, out aktualnyZaklad))
+                {
+                    MessageBox.Show("Wprowadź poprawny zakład (liczba całkowita)!");
+                    zaklad.Text = "0";
+                    return;
+                }
+
+                if (aktualnyZaklad <= 0)
+                {
+                    MessageBox.Show("Zakład musi być większy niż 0!");
+                    return;
+                }
+
+                if (aktualnyZaklad > aktualneSaldo)
+                {
+                    MessageBox.Show($"Nie masz wystarczająco środków!\nTwoje saldo: {aktualneSaldo}\nZakład: {aktualnyZaklad}");
+                    return;
+                }
+
+                // Pobranie zakładu z salda
+                aktualneSaldo -= aktualnyZaklad;
+                if (saldo != null)
+                    saldo.Text = aktualneSaldo.ToString();
+
+                // Zapisanie zaktualizowanego salda do pliku
+                ZapiszSaldoDoPliku();
+            }
 
             // Rozpocznij animację
             RozpocznijAnimacje();
@@ -167,8 +282,18 @@ namespace Hipcio
             // Sprawdzanie czy wszystkie wylosowane symbole są takie same
             if (randomNumber1 == randomNumber2 && randomNumber1 == randomNumber3)
             {
+                // Wygrana - zwrot zakładu x3 (lub inna mnożnik, np. x5, x10)
+                int wygrana = aktualnyZaklad * 5; // Mnożnik wygranej x5
+                aktualneSaldo += wygrana;
+
+                if (saldo != null)
+                    saldo.Text = aktualneSaldo.ToString();
+
+                // Zapisanie zaktualizowanego salda do pliku
+                ZapiszSaldoDoPliku();
+
                 // Wyświetla się informacja o wygranej gdy symbole są identyczne
-                infoWynik.Text = "WYGRANA!";
+                infoWynik.Text = $"WYGRANA! +{wygrana}";
                 infoWynik.ForeColor = Color.FromArgb(34, 111, 84);
 
                 // Efekt migania
@@ -176,6 +301,10 @@ namespace Hipcio
             }
             else
             {
+                // Przegrana - saldo już zostało zmniejszone przed grą
+                // Zapisanie zaktualizowanego salda do pliku
+                ZapiszSaldoDoPliku();
+
                 // Wyświetla się informacja o przegranej gdy symbole są inne
                 infoWynik.Text = "Przegrana";
                 infoWynik.ForeColor = Color.FromArgb(218, 44, 56);

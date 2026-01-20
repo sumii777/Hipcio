@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,13 @@ namespace Hipcio
         // Czy gra jest w trakcie
         private bool czyGraWTrakcie = false;
 
+        // Zmienne do zarządzania saldem i zakładami
+        private int aktualneSaldo = 1000;  // Początkowe saldo gracza
+        private int aktualnyZaklad = 0;    // Aktualny zakład w rundzie
+
+        // Ścieżka do pliku z saldem
+        private string sciezkaPliku = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wartosc.txt");
+
         public OknoKoloFortuny()
         {
             InitializeComponent();
@@ -57,6 +65,81 @@ namespace Hipcio
 
             // Dodanie obsługi kliknięcia przycisku
             przyciskGraj.Click += PrzyciskGraj_Click;
+
+            // Wczytanie salda z pliku
+            aktualneSaldo = WczytajLubUtworzPlik();
+
+            // Zakładam, że masz kontrolki saldo i zaklad (TextBox lub Label)
+            if (saldo != null)
+                saldo.Text = aktualneSaldo.ToString();
+
+            if (zaklad != null)
+            {
+                zaklad.Text = "10";
+                // Dodanie walidacji pola zakładu
+                zaklad.Leave += Zaklad_Leave;
+            }
+        }
+
+        // Walidacja pola zakładu - jeśli nie liczba, ustaw 0
+        private void Zaklad_Leave(object sender, EventArgs e)
+        {
+            if (!int.TryParse(zaklad.Text, out int wartoscZakladu))
+            {
+                zaklad.Text = "0";
+                MessageBox.Show("Nieprawidłowa wartość zakładu. Ustawiono 0.", "Błąd",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (wartoscZakladu < 0)
+            {
+                zaklad.Text = "0";
+                MessageBox.Show("Zakład nie może być ujemny. Ustawiono 0.", "Błąd",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // Wczytywanie salda z pliku lub tworzenie pliku z domyślną wartością
+        int WczytajLubUtworzPlik()
+        {
+            try
+            {
+                if (!File.Exists(sciezkaPliku))
+                {
+                    File.WriteAllText(sciezkaPliku, "1000");
+                    return 1000;
+                }
+
+                string zawartosc = File.ReadAllText(sciezkaPliku).Trim();
+
+                if (int.TryParse(zawartosc, out int wartosc) && wartosc >= 0)
+                {
+                    return wartosc;
+                }
+
+                // Jeśli plik uszkodzony lub wartość ujemna
+                File.WriteAllText(sciezkaPliku, "1000");
+                return 1000;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd wczytywania salda: {ex.Message}\nUstawiono domyślne saldo 1000.",
+                    "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 1000;
+            }
+        }
+
+        // Zapisywanie aktualnego salda do pliku
+        private void ZapiszSaldoDoPliku()
+        {
+            try
+            {
+                File.WriteAllText(sciezkaPliku, aktualneSaldo.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd zapisywania salda: {ex.Message}",
+                    "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void OknoKoloFortuny_Load(object sender, EventArgs e)
@@ -86,6 +169,37 @@ namespace Hipcio
             // Sprawdź czy tablica została zainicjalizowana i czy gra nie jest w trakcie
             if (wygraneLabels == null || czyGraWTrakcie)
                 return;
+
+            // Walidacja i pobranie zakładu
+            if (zaklad != null)
+            {
+                if (!int.TryParse(zaklad.Text, out aktualnyZaklad))
+                {
+                    MessageBox.Show("Wprowadź poprawny zakład (liczba całkowita)!");
+                    zaklad.Text = "0";
+                    return;
+                }
+
+                if (aktualnyZaklad <= 0)
+                {
+                    MessageBox.Show("Zakład musi być większy niż 0!");
+                    return;
+                }
+
+                if (aktualnyZaklad > aktualneSaldo)
+                {
+                    MessageBox.Show($"Nie masz wystarczająco środków!\nTwoje saldo: {aktualneSaldo}\nZakład: {aktualnyZaklad}");
+                    return;
+                }
+
+                // Pobranie zakładu z salda
+                aktualneSaldo -= aktualnyZaklad;
+                if (saldo != null)
+                    saldo.Text = aktualneSaldo.ToString();
+
+                // Zapisanie zaktualizowanego salda do pliku
+                ZapiszSaldoDoPliku();
+            }
 
             // Rozpocznij grę
             RozpocznijGre();
@@ -159,18 +273,29 @@ namespace Hipcio
 
         private void ZakonczGre()
         {
-            int wygrana = wygraneWartosci[aktualnyIndex];
+            int mnoznik = wygraneWartosci[aktualnyIndex];
 
-            if (wygrana == 0)
+            if (mnoznik == 0)
             {
+                // BANKRUT - gracz traci zakład (który już został pobrany)
                 infoGra.Text = "BANKRUT!";
                 infoGra.ForeColor = Color.FromArgb(255, 74, 28);
             }
             else
             {
-                infoGra.Text = "Wygrałeś x" + wygrana + "!";
+                // Wygrana - zakład pomnożony przez mnożnik
+                int wygrana = aktualnyZaklad * mnoznik;
+                aktualneSaldo += wygrana;
+
+                if (saldo != null)
+                    saldo.Text = aktualneSaldo.ToString();
+
+                infoGra.Text = $"Wygrałeś {wygrana}! (x{mnoznik})";
                 infoGra.ForeColor = Color.FromArgb(74, 255, 28); // Zielony
             }
+
+            // Zapisanie zaktualizowanego salda do pliku
+            ZapiszSaldoDoPliku();
 
             // Odczekaj 2 sekundy i przywróć normalny stan
             Timer resetTimer = new Timer();
@@ -196,14 +321,12 @@ namespace Hipcio
 
         private void infoWynik_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-            
-        }
 
-       
+        }
     }
 }

@@ -30,7 +30,6 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.infoWynik = new System.Windows.Forms.Label();
-            this.zaklad = new System.Windows.Forms.Label();
             this.saldo = new System.Windows.Forms.Label();
             this.infoZaklad = new System.Windows.Forms.Label();
             this.infoSaldo = new System.Windows.Forms.Label();
@@ -39,6 +38,7 @@
             this.obrazWynik2 = new System.Windows.Forms.PictureBox();
             this.obrazWynik3 = new System.Windows.Forms.PictureBox();
             this.infoGra = new System.Windows.Forms.Label();
+            this.zaklad = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik2)).BeginInit();
@@ -57,7 +57,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
             this.tableLayoutPanel1.Controls.Add(this.infoWynik, 3, 7);
-            this.tableLayoutPanel1.Controls.Add(this.zaklad, 4, 8);
             this.tableLayoutPanel1.Controls.Add(this.saldo, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.infoZaklad, 4, 7);
             this.tableLayoutPanel1.Controls.Add(this.infoSaldo, 1, 7);
@@ -66,6 +65,7 @@
             this.tableLayoutPanel1.Controls.Add(this.obrazWynik2, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.obrazWynik3, 5, 3);
             this.tableLayoutPanel1.Controls.Add(this.infoGra, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.zaklad, 5, 8);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -94,20 +94,6 @@
             this.infoWynik.Size = new System.Drawing.Size(114, 19);
             this.infoWynik.TabIndex = 9;
             this.infoWynik.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // zaklad
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.zaklad, 2);
-            this.zaklad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zaklad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.zaklad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.zaklad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.zaklad.Location = new System.Drawing.Point(463, 403);
-            this.zaklad.Name = "zaklad";
-            this.zaklad.Size = new System.Drawing.Size(154, 22);
-            this.zaklad.TabIndex = 8;
-            this.zaklad.Text = "{zakład}";
-            this.zaklad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // saldo
             // 
@@ -227,6 +213,18 @@
             this.infoGra.Text = "Jednoręki Bandyta";
             this.infoGra.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // zaklad
+            // 
+            this.zaklad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.zaklad.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.zaklad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.zaklad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
+            this.zaklad.Location = new System.Drawing.Point(503, 406);
+            this.zaklad.Name = "zaklad";
+            this.zaklad.Size = new System.Drawing.Size(73, 19);
+            this.zaklad.TabIndex = 10;
+            this.zaklad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // OknoBandyta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -241,6 +239,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Jednoręki Bandyta";
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik3)).EndInit();
@@ -256,10 +255,10 @@
         private System.Windows.Forms.PictureBox obrazWynik3;
         private System.Windows.Forms.Label infoGra;
         private System.Windows.Forms.Button przyciskKrec;
-        private System.Windows.Forms.Label zaklad;
         private System.Windows.Forms.Label saldo;
         private System.Windows.Forms.Label infoZaklad;
         private System.Windows.Forms.Label infoSaldo;
         private System.Windows.Forms.Label infoWynik;
+        private System.Windows.Forms.TextBox zaklad;
     }
 }

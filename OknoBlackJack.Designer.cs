@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.zaklad = new System.Windows.Forms.Label();
             this.infoZaklad = new System.Windows.Forms.Label();
             this.saldo = new System.Windows.Forms.Label();
             this.infoSaldo = new System.Windows.Forms.Label();
@@ -42,6 +41,7 @@
             this.labelKrupier = new System.Windows.Forms.Label();
             this.dobierz = new System.Windows.Forms.Button();
             this.hold = new System.Windows.Forms.Button();
+            this.zaklad = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +56,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
-            this.tableLayoutPanel1.Controls.Add(this.zaklad, 4, 8);
             this.tableLayoutPanel1.Controls.Add(this.infoZaklad, 4, 7);
             this.tableLayoutPanel1.Controls.Add(this.saldo, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.infoSaldo, 1, 7);
@@ -69,6 +68,7 @@
             this.tableLayoutPanel1.Controls.Add(this.labelKrupier, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.dobierz, 5, 4);
             this.tableLayoutPanel1.Controls.Add(this.hold, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.zaklad, 5, 8);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
@@ -85,20 +85,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 1;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
-            // 
-            // zaklad
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.zaklad, 2);
-            this.zaklad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zaklad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.zaklad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.zaklad.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.zaklad.Location = new System.Drawing.Point(463, 402);
-            this.zaklad.Name = "zaklad";
-            this.zaklad.Size = new System.Drawing.Size(154, 22);
-            this.zaklad.TabIndex = 16;
-            this.zaklad.Text = "{zakład}";
-            this.zaklad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // infoZaklad
             // 
@@ -271,6 +257,19 @@
             this.hold.UseVisualStyleBackColor = false;
             this.hold.Click += new System.EventHandler(this.hold_Click);
             // 
+            // zaklad
+            // 
+            this.zaklad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.zaklad.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.zaklad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.zaklad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
+            this.zaklad.Location = new System.Drawing.Point(503, 405);
+            this.zaklad.Name = "zaklad";
+            this.tableLayoutPanel1.SetRowSpan(this.zaklad, 2);
+            this.zaklad.Size = new System.Drawing.Size(74, 19);
+            this.zaklad.TabIndex = 23;
+            this.zaklad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // OknoBlackJack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,10 +301,10 @@
         private System.Windows.Forms.Label infoSaldo;
         private System.Windows.Forms.Label saldo;
         private System.Windows.Forms.Label infoZaklad;
-        private System.Windows.Forms.Label zaklad;
         private System.Windows.Forms.Label labelGracz;
         private System.Windows.Forms.Label labelKrupier;
         private System.Windows.Forms.Button dobierz;
         private System.Windows.Forms.Button hold;
+        private System.Windows.Forms.TextBox zaklad;
     }
 }
