@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="autorzy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="autorzy.Designer.cs">
+      <DependentUpon>autorzy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="doladuj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="doladuj.Designer.cs">
+      <DependentUpon>doladuj.cs</DependentUpon>
+    </Compile>
     <Compile Include="OknoMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +96,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="autorzy.resx">
+      <DependentUpon>autorzy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doladuj.resx">
+      <DependentUpon>doladuj.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OknoBandyta.resx">
       <DependentUpon>OknoBandyta.cs</DependentUpon>
     </EmbeddedResource>

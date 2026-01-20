@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Windows.Forms;
 
 namespace Hipcio
@@ -35,6 +37,9 @@ namespace Hipcio
         // Zmienne do zarządzania saldem i zakładami
         private int aktualneSaldo = 1000;  // Początkowe saldo gracza
         private int aktualnyZaklad = 0;    // Aktualny zakład w rundzie
+
+        // Ścieżka do pliku z saldem
+        private string sciezkaPliku = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wartosc.txt");
 
         // Sumy punktów gracza i krupiera
         private int sumaGracza;
@@ -132,6 +137,8 @@ namespace Hipcio
             new Karta(0, Properties.Resources.back),
         };
 
+        public int tokeny;
+
         // Konstruktor głównego okna gry
         public OknoBlackJack()
         {
@@ -148,9 +155,74 @@ namespace Hipcio
                 }
             };
 
-            // Inicjalizacja salda i ustawienie domyślnego zakładu
+            // Wczytanie salda z pliku
+            aktualneSaldo = WczytajLubUtworzPlik();
             saldo.Text = aktualneSaldo.ToString();
             zaklad.Text = "10";
+
+            // Dodanie walidacji pola zakładu
+            zaklad.Leave += Zaklad_Leave;
+        }
+
+        // Walidacja pola zakładu - jeśli nie liczba, ustaw 0
+        private void Zaklad_Leave(object sender, EventArgs e)
+        {
+            if (!int.TryParse(zaklad.Text, out int wartoscZakladu))
+            {
+                zaklad.Text = "0";
+                MessageBox.Show("Nieprawidłowa wartość zakładu. Ustawiono 0.", "Błąd",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (wartoscZakladu < 0)
+            {
+                zaklad.Text = "0";
+                MessageBox.Show("Zakład nie może być ujemny. Ustawiono 0.", "Błąd",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // Wczytywanie salda z pliku lub tworzenie pliku z domyślną wartością
+        int WczytajLubUtworzPlik()
+        {
+            try
+            {
+                if (!File.Exists(sciezkaPliku))
+                {
+                    File.WriteAllText(sciezkaPliku, "1000");
+                    return 1000;
+                }
+
+                string zawartosc = File.ReadAllText(sciezkaPliku).Trim();
+
+                if (int.TryParse(zawartosc, out int wartosc) && wartosc >= 0)
+                {
+                    return wartosc;
+                }
+
+                // Jeśli plik uszkodzony lub wartość ujemna
+                File.WriteAllText(sciezkaPliku, "1000");
+                return 1000;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd wczytywania salda: {ex.Message}\nUstawiono domyślne saldo 1000.",
+                    "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 1000;
+            }
+        }
+
+        // Zapisywanie aktualnego salda do pliku
+        private void ZapiszSaldoDoPliku()
+        {
+            try
+            {
+                File.WriteAllText(sciezkaPliku, aktualneSaldo.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd zapisywania salda: {ex.Message}",
+                    "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Metoda tworząca kontrolkę PictureBox dla karty
@@ -158,33 +230,28 @@ namespace Hipcio
         {
             return new PictureBox
             {
-                Size = new Size(70, 100),      // Standardowy rozmiar karty
-                Location = location,           // Pozycja początkowa
-                SizeMode = PictureBoxSizeMode.Zoom,  // Dopasowanie obrazka
-                BackColor = Color.Transparent, // Przezroczyste tło
-                Visible = false                // Początkowo ukryta
+                Size = new Size(70, 100),
+                Location = location,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                BackColor = Color.Transparent,
+                Visible = false
             };
         }
 
         // Inicjalizacja tablic PictureBoxów dla kart gracza i krupiera
         private void InicjalizujObrazkiKart()
         {
-            obrazkiKartGracza = new PictureBox[12];    // Maksymalnie 12 kart (teoretycznie)
+            obrazkiKartGracza = new PictureBox[12];
             obrazkiKartKrupiera = new PictureBox[12];
 
             for (int i = 0; i < 12; i++)
             {
-                // Tworzenie kontrolek dla krupiera
                 obrazkiKartKrupiera[i] = UtworzKarte(new Point(0, 0));
-
-                // Tworzenie kontrolek dla gracza
                 obrazkiKartGracza[i] = UtworzKarte(new Point(0, 0));
 
-                // Dodanie kontrolek do formularza
                 this.Controls.Add(obrazkiKartKrupiera[i]);
                 this.Controls.Add(obrazkiKartGracza[i]);
 
-                // Ustawienie na wierzchu innych kontrolek
                 obrazkiKartKrupiera[i].BringToFront();
                 obrazkiKartGracza[i].BringToFront();
             }
@@ -196,11 +263,10 @@ namespace Hipcio
             int suma = 0;
             int liczbaAsow = 0;
 
-            // Pierwsze przejście - sumowanie wartości
             foreach (int indeksKarty in karty)
             {
                 int wartosc = taliaKart[indeksKarty].Wartosc;
-                if (wartosc == 0) // As - traktowany początkowo jako 11
+                if (wartosc == 0)
                 {
                     liczbaAsow++;
                     suma += 11;
@@ -211,10 +277,9 @@ namespace Hipcio
                 }
             }
 
-            // Korekta wartości Asów jeśli suma > 21
             while (suma > 21 && liczbaAsow > 0)
             {
-                suma -= 10;  // Zmiana wartości Asa z 11 na 1
+                suma -= 10;
                 liczbaAsow--;
             }
 
@@ -231,21 +296,31 @@ namespace Hipcio
         private void NowaGra()
         {
             // Walidacja i pobranie zakładu
-            if (!int.TryParse(zaklad.Text, out aktualnyZaklad) || aktualnyZaklad <= 0)
+            if (!int.TryParse(zaklad.Text, out aktualnyZaklad))
             {
-                MessageBox.Show("Wprowadź poprawny zakład!");
+                MessageBox.Show("Wprowadź poprawny zakład (liczba całkowita)!");
+                zaklad.Text = "0";
+                return;
+            }
+
+            if (aktualnyZaklad <= 0)
+            {
+                MessageBox.Show("Zakład musi być większy niż 0!");
                 return;
             }
 
             if (aktualnyZaklad > aktualneSaldo)
             {
-                MessageBox.Show("Nie masz wystarczająco środków!");
+                MessageBox.Show($"Nie masz wystarczająco środków!\nTwoje saldo: {aktualneSaldo}\nZakład: {aktualnyZaklad}");
                 return;
             }
 
             // Pobranie zakładu z salda
             aktualneSaldo -= aktualnyZaklad;
             saldo.Text = aktualneSaldo.ToString();
+
+            // Zapisanie zaktualizowanego salda do pliku
+            ZapiszSaldoDoPliku();
 
             // Ukrycie elementów menu głównego
             przyciskGraj.Visible = false;
@@ -273,12 +348,10 @@ namespace Hipcio
         // Resetowanie wszystkich zmiennych gry do stanu początkowego
         private void ResetujGre()
         {
-            // Czyszczenie list kart
             kartyGracza.Clear();
             kartyKrupiera.Clear();
             uzyteKarty.Clear();
 
-            // Resetowanie zmiennych stanu
             sumaGracza = 0;
             sumaKrupiera = 0;
             indeksKartyGracza = 0;
@@ -287,7 +360,6 @@ namespace Hipcio
             runda = true;
             pierwszaKartaKrupieraZakryta = true;
 
-            // Ukrycie wszystkich obrazków kart
             for (int i = 0; i < 12; i++)
             {
                 if (obrazkiKartGracza != null && obrazkiKartGracza[i] != null)
@@ -297,7 +369,6 @@ namespace Hipcio
                     obrazkiKartKrupiera[i].Visible = false;
             }
 
-            // Resetowanie etykiet z wynikami
             labelGracz.Text = "0";
             labelKrupier.Text = "0";
         }
@@ -305,7 +376,6 @@ namespace Hipcio
         // Rozdanie początkowych 2 kart graczowi i 2 kart krupierowi
         private void RozdajPoczatkoweKarty()
         {
-            // Rozdanie 2 kart graczowi
             for (int i = 0; i < 2; i++)
             {
                 int los = LosujKarte();
@@ -313,11 +383,9 @@ namespace Hipcio
                 DodajKarteGraczowi(los);
             }
 
-            // Obliczenie i wyświetlenie sumy gracza
             sumaGracza = ObliczWartoscReki(kartyGracza);
             labelGracz.Text = sumaGracza.ToString();
 
-            // Rozdanie 2 kart krupierowi
             for (int i = 0; i < 2; i++)
             {
                 int los = LosujKarte();
@@ -325,23 +393,18 @@ namespace Hipcio
                 DodajKarteKrupierowi(los);
             }
 
-            // Obliczenie sumy krupiera (tylko widoczna karta)
             sumaKrupiera = ObliczWartoscReki(kartyKrupiera);
-            // Wyświetlenie tylko wartości drugiej (widocznej) karty krupiera
             labelKrupier.Text = (taliaKart[kartyKrupiera[1]].Wartosc == 0 ? 11 :
                            taliaKart[kartyKrupiera[1]].Wartosc).ToString();
 
-            // Sprawdzenie czy gracz ma natychmiastowego blackjacka
             SprawdzBlackJack();
         }
 
         // Losowanie karty z talii (unikając powtórzeń w rundzie)
         private int LosujKarte()
         {
-            // 52 karty + back, więc -1
             int maxKart = taliaKart.Length - 1;
 
-            // ZABEZPIECZENIE – nie ma już kart
             if (uzyteKarty.Count >= maxKart)
             {
                 throw new InvalidOperationException("Brak kart w talii!");
@@ -363,16 +426,14 @@ namespace Hipcio
         {
             Karta karta = taliaKart[indeksKarty];
 
-            // Wyświetlenie karty w interfejsie
             if (indeksKartyGracza < obrazkiKartGracza.Length)
             {
                 obrazkiKartGracza[indeksKartyGracza].Image = karta.Obraz;
                 obrazkiKartGracza[indeksKartyGracza].Visible = true;
-                UlozKartyGracza();  // Przegrupowanie kart
+                UlozKartyGracza();
                 indeksKartyGracza++;
             }
 
-            // Przeliczenie i wyświetlenie nowej sumy
             sumaGracza = ObliczWartoscReki(kartyGracza);
             labelGracz.Text = sumaGracza.ToString();
         }
@@ -382,22 +443,19 @@ namespace Hipcio
         {
             Karta karta = taliaKart[indeksKarty];
 
-            // Wyświetlenie karty w interfejsie
             if (indeksKartyKrupiera < obrazkiKartKrupiera.Length)
             {
                 if (indeksKartyKrupiera == 0 && pierwszaKartaKrupieraZakryta)
                 {
-                    // Pierwsza karta krupiera - pokazanie tyłu karty
                     obrazkiKartKrupiera[indeksKartyKrupiera].Image = taliaKart[taliaKart.Length - 1].Obraz;
                 }
                 else
                 {
-                    // Pozostałe karty - pokazanie awersu
                     obrazkiKartKrupiera[indeksKartyKrupiera].Image = karta.Obraz;
                 }
 
                 obrazkiKartKrupiera[indeksKartyKrupiera].Visible = true;
-                UlozKartyKrupiera();  // Przegrupowanie kart
+                UlozKartyKrupiera();
                 indeksKartyKrupiera++;
             }
         }
@@ -405,11 +463,10 @@ namespace Hipcio
         // Układanie kart krupiera w poziomie
         private void UlozKartyKrupiera()
         {
-            int cardWidth = 70;      // Szerokość karty (jak w UtworzKarte)
-            int spacing = 10;        // Odstęp między kartami
-            int margin = 40;         // Margines od krawędzi
+            int cardWidth = 70;
+            int spacing = 10;
+            int margin = 40;
 
-            // Policz WIDOCZNE karty
             int count = 0;
             for (int i = 0; i < obrazkiKartKrupiera.Length; i++)
             {
@@ -421,13 +478,11 @@ namespace Hipcio
 
             if (count == 0) return;
 
-            // Obliczanie pozycji startowej dla wyśrodkowania
             int zoneWidth = (ClientSize.Width / 2) - margin;
             int totalWidth = count * cardWidth + (count - 1) * spacing;
             int startX = margin + (zoneWidth - totalWidth) / 2;
-            int y = 30;  // Stała pozycja Y dla krupiera
+            int y = 30;
 
-            // Ustawianie pozycji każdej karty
             for (int i = 0; i < count; i++)
             {
                 obrazkiKartKrupiera[i].Location = new Point(startX + i * (cardWidth + spacing), y);
@@ -438,11 +493,10 @@ namespace Hipcio
         // Układanie kart gracza w poziomie
         private void UlozKartyGracza()
         {
-            int cardWidth = 70;      // Szerokość karty (jak w UtworzKarte)
-            int spacing = 10;        // Odstęp między kartami
-            int margin = 40;         // Margines od krawędzi
+            int cardWidth = 70;
+            int spacing = 10;
+            int margin = 40;
 
-            // Policz WIDOCZNE karty
             int count = 0;
             for (int i = 0; i < obrazkiKartGracza.Length; i++)
             {
@@ -454,14 +508,12 @@ namespace Hipcio
 
             if (count == 0) return;
 
-            // Obliczanie pozycji startowej (prawa połowa ekranu)
             int zoneStartX = ClientSize.Width / 2;
             int zoneWidth = (ClientSize.Width / 2) - margin;
             int totalWidth = count * cardWidth + (count - 1) * spacing;
             int startX = zoneStartX + (zoneWidth - totalWidth) / 2;
-            int y = 30;  // Pozycja Y dla gracza
+            int y = 30;
 
-            // Ustawianie pozycji każdej karty
             for (int i = 0; i < count; i++)
             {
                 obrazkiKartGracza[i].Location = new Point(startX + i * (cardWidth + spacing), y);
@@ -474,14 +526,12 @@ namespace Hipcio
         {
             if (pierwszaKartaKrupieraZakryta && indeksKartyKrupiera > 0)
             {
-                // Zamiana obrazka z tyłu karty na właściwą kartę
                 if (kartyKrupiera.Count == 0 || obrazkiKartKrupiera[0] == null)
                     return;
 
                 obrazkiKartKrupiera[0].Image = taliaKart[kartyKrupiera[0]].Obraz;
                 pierwszaKartaKrupieraZakryta = false;
 
-                // Przeliczenie i wyświetlenie pełnej sumy krupiera
                 sumaKrupiera = ObliczWartoscReki(kartyKrupiera);
                 labelKrupier.Text = sumaKrupiera.ToString();
             }
@@ -490,10 +540,9 @@ namespace Hipcio
         // Automatyczna gra krupiera (dobieranie kart według zasad)
         private void DobierzKartyKrupiera()
         {
-            runda = false;  // Zakończenie tury gracza
-            PokazUkrytaKarteKrupiera();  // Odkrycie pierwszej karty
+            runda = false;
+            PokazUkrytaKarteKrupiera();
 
-            // Krupier dobiera karty aż osiągnie co najmniej 17 punktów
             while (sumaKrupiera < 17 && !koniecGry)
             {
                 int los = LosujKarte();
@@ -503,7 +552,6 @@ namespace Hipcio
                 sumaKrupiera = ObliczWartoscReki(kartyKrupiera);
                 labelKrupier.Text = sumaKrupiera.ToString();
 
-                // Sprawdzenie czy krupier przekroczył 21 punktów
                 if (sumaKrupiera > 21)
                 {
                     KoniecGry("Krupier bust! Wygrałeś!", true);
@@ -511,7 +559,6 @@ namespace Hipcio
                 }
             }
 
-            // Porównanie wyników jeśli gra się nie zakończyła
             if (!koniecGry)
             {
                 PorownajWyniki();
@@ -538,13 +585,11 @@ namespace Hipcio
 
                 if (sumaKrupiera == 21 && kartyKrupiera.Count == 2)
                 {
-                    // Remis – zwrot zakładu
-                    aktualneSaldo += aktualnyZaklad;  // Zwrot zakładu
+                    aktualneSaldo += aktualnyZaklad;
                     KoniecGry("Remis – oboje mają Blackjacka!", false, true, true);
                 }
                 else
                 {
-                    // Blackjack = 3:2 (gracz już zapłacił zakład na starcie)
                     aktualneSaldo += (int)(aktualnyZaklad * 2.5);
                     KoniecGry("Blackjack! Wygrana 3:2", true, false, true);
                 }
@@ -558,14 +603,12 @@ namespace Hipcio
             bool remis = false,
             bool payoutHandled = false)
         {
-            // Zapobiegaj wielokrotnemu wywołaniu
             if (koniecGry) return;
 
             koniecGry = true;
             dobierz.Enabled = false;
             hold.Enabled = false;
 
-            // Wypłata tylko jeśli nie została już obsłużona
             if (!payoutHandled)
             {
                 if (wygrana)
@@ -574,12 +617,13 @@ namespace Hipcio
                     aktualneSaldo += aktualnyZaklad;
             }
 
+            // Zapisanie zaktualizowanego salda do pliku
+            saldo.Text = aktualneSaldo.ToString();
+            ZapiszSaldoDoPliku();
 
-            // Tylko jeśli jeszcze nie pokazano
             if (pierwszaKartaKrupieraZakryta)
                 PokazUkrytaKarteKrupiera();
 
-            // Przywrócenie menu
             przyciskGraj.Visible = true;
             infoSaldo.Visible = true;
             infoZaklad.Visible = true;
@@ -596,14 +640,12 @@ namespace Hipcio
         // Obsługa przycisku dobierania karty przez gracza
         private void dobierz_Click(object sender, EventArgs e)
         {
-            if (koniecGry || !runda) return;  // Sprawdzenie czy można grać
+            if (koniecGry || !runda) return;
 
-            // Dodanie karty
             int los = LosujKarte();
             kartyGracza.Add(los);
             DodajKarteGraczowi(los);
 
-            // Sprawdzenie BUST po dodaniu karty
             if (sumaGracza > 21)
             {
                 KoniecGry("Bust! Przegrałeś!", false);
@@ -631,9 +673,8 @@ namespace Hipcio
         // Inicjalizacja po załadowaniu formularza
         private void OknoBlackJack_Load(object sender, EventArgs e)
         {
-            InicjalizujObrazkiKart();  // Przygotowanie kontrolek kart
+            InicjalizujObrazkiKart();
 
-            // Ustawienia początkowej widoczności elementów
             przyciskGraj.Visible = true;
             dobierz.Visible = false;
             hold.Visible = false;

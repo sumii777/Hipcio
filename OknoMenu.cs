@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Hipcio
 {
@@ -18,11 +19,30 @@ namespace Hipcio
         {
             InitializeComponent(); // Inicjalizacja komponentów formularza
         }
-
         
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            
+
+        }
+
+        //wczytywanie salda z pliku lub tworzenie pliku z domyślną wartością
+        int WczytajLubUtworzPlik()
+        {
+            string sciezka = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wartosc.txt");
+
+            if (!File.Exists(sciezka))
+            {
+                File.WriteAllText(sciezka, "1000");
+                return 1000;
+            }
+
+            if (int.TryParse(File.ReadAllText(sciezka), out int wartosc))
+                return wartosc;
+
+            // jeśli plik uszkodzony
+            File.WriteAllText(sciezka, "1000");
+            return 1000;
         }
 
         // Obsługa kliknięcia przycisku Blackjack
@@ -87,12 +107,31 @@ namespace Hipcio
         // Obsługa kliknięcia przycisku doładowania
         private void doladuj_Click(object sender, EventArgs e)
         {
-            // Tu można dodać logikę doładowania środków
+            doladuj dol = new doladuj();
+
+            dol.StartPosition = FormStartPosition.Manual;
+            dol.Location = this.Location;
+            this.Hide();
+            dol.Show();
+            // Po zamknięciu bandyty wróć do menu
+            dol.FormClosed += (s, args) => this.Show();
         }
 
         private void OknoMenu_Load(object sender, EventArgs e)
         {
+            autorzy au = new autorzy();
 
+            au.StartPosition = FormStartPosition.Manual;
+            au.Location = this.Location;
+            this.Hide();
+            au.Show();
+            // Po zamknięciu bandyty wróć do menu
+            au.FormClosed += (s, args) => this.Show();
+        }
+
+        private void OknoMenu_Load(object sender, EventArgs e)
+        {
+            WczytajLubUtworzPlik();
         }
     }
 }
