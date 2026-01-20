@@ -42,12 +42,13 @@
             this.labelKrupier = new System.Windows.Forms.Label();
             this.dobierz = new System.Windows.Forms.Button();
             this.hold = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.ColumnCount = 7;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
@@ -271,6 +272,10 @@
             this.hold.UseVisualStyleBackColor = false;
             this.hold.Click += new System.EventHandler(this.hold_Click);
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
             // OknoBlackJack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,5 +312,6 @@
         private System.Windows.Forms.Label labelKrupier;
         private System.Windows.Forms.Button dobierz;
         private System.Windows.Forms.Button hold;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

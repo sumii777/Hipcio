@@ -203,7 +203,13 @@ namespace Hipcio
         {
             
         }
+        // Ustawienie tła formularza na obraz bez migania
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(
+                Properties.Resources.background,
+                this.ClientRectangle);
+        }
 
-       
     }
 }

@@ -241,5 +241,13 @@ namespace Hipcio
             infoWynik.Text = "Zagraj!";
             infoWynik.ForeColor = Color.FromArgb(188, 188, 188);
         }
+
+        // Ustawienie tła formularza na obraz bez migania
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(
+                Properties.Resources.background,
+                this.ClientRectangle);
+        }
     }
 }

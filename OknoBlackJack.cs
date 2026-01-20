@@ -639,11 +639,24 @@ namespace Hipcio
             hold.Visible = false;
             labelGracz.Visible = false;
             labelKrupier.Visible = false;
+
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+
+        }
+        // Ustawienie tła formularza na obraz bez migania
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            e.Graphics.DrawImage(
+                Properties.Resources.jackblackbg,
+                this.ClientRectangle);
         }
     }
 }

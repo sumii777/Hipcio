@@ -90,10 +90,9 @@ namespace Hipcio
             // Tu można dodać logikę doładowania środków
         }
 
-        // Obsługa kliknięcia przycisku "Autorzy"
-        private void autorzy_Click(object sender, EventArgs e)
+        private void OknoMenu_Load(object sender, EventArgs e)
         {
-            // Tu można dodać okno z informacjami o autorach
+
         }
     }
 }
