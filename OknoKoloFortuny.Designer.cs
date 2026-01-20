@@ -284,6 +284,7 @@
             this.zaklad.Name = "zaklad";
             this.zaklad.Size = new System.Drawing.Size(100, 19);
             this.zaklad.TabIndex = 29;
+            this.zaklad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // OknoKoloFortuny
             // 
