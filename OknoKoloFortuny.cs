@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,16 @@ namespace Hipcio
         // Czy gra jest w trakcie
         private bool czyGraWTrakcie = false;
 
+        // Zmienne do zarządzania saldem i zakładami
+        private int aktualneSaldo = 1000;
+        private int aktualnyZaklad = 0;
+
+        // Ścieżka do pliku z saldem
+        private string sciezkaPliku = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wartosc.txt");
+
+        // Zmienna do edycji zakładu
+        private string tekstZakladu = "0";
+
         public OknoKoloFortuny()
         {
             InitializeComponent();
@@ -57,6 +68,147 @@ namespace Hipcio
 
             // Dodanie obsługi kliknięcia przycisku
             przyciskGraj.Click += PrzyciskGraj_Click;
+
+            // Wczytanie salda z pliku
+            aktualneSaldo = WczytajLubUtworzPlik();
+
+            // Aktualizacja kontrolek saldo i zaklad
+            if (saldo != null)
+                saldo.Text = aktualneSaldo.ToString();
+
+            if (zaklad != null)
+            {
+                zaklad.Text = "0";
+                zaklad.Cursor = Cursors.IBeam;
+            }
+
+            // Obsługa klawiatury na poziomie formy
+            this.KeyPreview = true;
+            this.KeyDown += OknoKoloFortuny_KeyDown;
+        }
+
+        private void OknoKoloFortuny_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (czyGraWTrakcie)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                return;
+            }
+
+            // Delete - wyczyść zakład
+            if (e.KeyCode == Keys.Delete)
+            {
+                tekstZakladu = "0";
+                if (zaklad != null)
+                    zaklad.Text = tekstZakladu;
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+            // Backspace
+            else if (e.KeyCode == Keys.Back)
+            {
+                if (tekstZakladu.Length > 1)
+                {
+                    tekstZakladu = tekstZakladu.Substring(0, tekstZakladu.Length - 1);
+                }
+                else
+                {
+                    tekstZakladu = "0";
+                }
+
+                if (zaklad != null)
+                    zaklad.Text = tekstZakladu;
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+            // Enter - rozpocznij grę
+            else if (e.KeyCode == Keys.Enter)
+            {
+                PrzyciskGraj_Click(sender, e);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void OknoKoloFortuny_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (czyGraWTrakcie)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Akceptuj tylko cyfry
+            if (char.IsDigit(e.KeyChar))
+            {
+                // Jeśli zakład to "0", zastąp go nową cyfrą
+                if (tekstZakladu == "0")
+                {
+                    tekstZakladu = e.KeyChar.ToString();
+                }
+                else
+                {
+                    // Dodaj cyfrę (z limitem aby uniknąć przepełnienia)
+                    string nowyTekst = tekstZakladu + e.KeyChar;
+                    if (long.TryParse(nowyTekst, out long wartoscTest) && wartoscTest <= int.MaxValue)
+                    {
+                        tekstZakladu = nowyTekst;
+                    }
+                }
+
+                if (zaklad != null)
+                    zaklad.Text = tekstZakladu;
+
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        int WczytajLubUtworzPlik()
+        {
+            try
+            {
+                if (!File.Exists(sciezkaPliku))
+                {
+                    File.WriteAllText(sciezkaPliku, "1000");
+                    return 1000;
+                }
+
+                string zawartosc = File.ReadAllText(sciezkaPliku).Trim();
+
+                if (int.TryParse(zawartosc, out int wartosc) && wartosc >= 0)
+                {
+                    return wartosc;
+                }
+
+                // Jeśli plik uszkodzony
+                File.WriteAllText(sciezkaPliku, "1000");
+                return 1000;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd wczytywania salda: {ex.Message}\nUstawiono domyślne saldo 1000.",
+                    "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 1000;
+            }
+        }
+
+        private void ZapiszSaldoDoPliku()
+        {
+            try
+            {
+                File.WriteAllText(sciezkaPliku, aktualneSaldo.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd zapisywania salda: {ex.Message}",
+                    "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void OknoKoloFortuny_Load(object sender, EventArgs e)
@@ -67,27 +219,56 @@ namespace Hipcio
                 if (wygraneWartosci[i] == 0)
                 {
                     wygraneLabels[i].Text = "BANKRUT";
-                    wygraneLabels[i].ForeColor = Color.FromArgb(255, 74, 28); // Czerwony
+                    wygraneLabels[i].ForeColor = Color.FromArgb(255, 74, 28);
                 }
                 else
                 {
                     wygraneLabels[i].Text = "x" + wygraneWartosci[i];
-                    wygraneLabels[i].ForeColor = Color.FromArgb(188, 188, 188); // Szary
+                    wygraneLabels[i].ForeColor = Color.FromArgb(188, 188, 188);
                 }
                 wygraneLabels[i].BackColor = Color.FromArgb(27, 27, 27);
             }
 
-            // Podświetl pierwszy element na start
+            // Podświetl pierwszy element
             PodswietlElement(0);
         }
 
         private void PrzyciskGraj_Click(object sender, EventArgs e)
         {
-            // Sprawdź czy tablica została zainicjalizowana i czy gra nie jest w trakcie
             if (wygraneLabels == null || czyGraWTrakcie)
                 return;
 
-            // Rozpocznij grę
+            // Walidacja zakładu
+            if (zaklad != null)
+            {
+                if (!int.TryParse(zaklad.Text, out aktualnyZaklad))
+                {
+                    MessageBox.Show("Wprowadź poprawny zakład (liczba całkowita)!");
+                    zaklad.Text = "0";
+                    tekstZakladu = "0";
+                    return;
+                }
+
+                if (aktualnyZaklad <= 0)
+                {
+                    MessageBox.Show("Zakład musi być większy niż 0!");
+                    return;
+                }
+
+                if (aktualnyZaklad > aktualneSaldo)
+                {
+                    MessageBox.Show($"Nie masz wystarczająco środków!\nTwoje saldo: {aktualneSaldo}\nZakład: {aktualnyZaklad}");
+                    return;
+                }
+
+                // Pobranie zakładu z salda
+                aktualneSaldo -= aktualnyZaklad;
+                if (saldo != null)
+                    saldo.Text = aktualneSaldo.ToString();
+
+                ZapiszSaldoDoPliku();
+            }
+
             RozpocznijGre();
         }
 
@@ -95,19 +276,19 @@ namespace Hipcio
         {
             czyGraWTrakcie = true;
             przyciskGraj.Enabled = false;
-            infoGra.Text = "Kręcę...";
+            if (infoGra != null)
+                infoGra.Text = "Kręcę...";
 
-            // Losuj wynik (od 0 do 7)
+            // Losuj wynik
             docelowyIndex = rand.Next(wygraneLabels.Length);
 
-            // Ustaw liczbę kroków animacji (minimum 20 + dodatkowe do osiągnięcia celu)
+            // Ustaw liczbę kroków (minimum 20 + rotacje do celu)
             krokiAnimacji = 20 + docelowyIndex;
 
             // Resetuj opóźnienie
             opoznienie = 50;
             timerAnimacji.Interval = opoznienie;
 
-            // Wystartuj timer
             timerAnimacji.Start();
         }
 
@@ -136,7 +317,7 @@ namespace Hipcio
 
         private void PodswietlElement(int index)
         {
-            // Przywróć normalny wygląd wszystkim etykietom
+            // Przywróć normalny wygląd
             for (int i = 0; i < wygraneLabels.Length; i++)
             {
                 if (wygraneWartosci[i] == 0)
@@ -152,27 +333,40 @@ namespace Hipcio
             }
 
             // Podświetl aktualny element
-            wygraneLabels[index].BackColor = Color.FromArgb(255, 74, 28); // Pomarańczowy
+            wygraneLabels[index].BackColor = Color.FromArgb(255, 74, 28);
             wygraneLabels[index].ForeColor = Color.White;
             wygraneLabels[index].Font = new Font("Arial", 14F, FontStyle.Bold);
         }
 
         private void ZakonczGre()
         {
-            int wygrana = wygraneWartosci[aktualnyIndex];
+            int mnoznik = wygraneWartosci[aktualnyIndex];
 
-            if (wygrana == 0)
+            if (infoGra != null)
             {
-                infoGra.Text = "BANKRUT!";
-                infoGra.ForeColor = Color.FromArgb(255, 74, 28);
-            }
-            else
-            {
-                infoGra.Text = "Wygrałeś x" + wygrana + "!";
-                infoGra.ForeColor = Color.FromArgb(74, 255, 28); // Zielony
+                if (mnoznik == 0)
+                {
+                    // BANKRUT
+                    infoGra.Text = "BANKRUT!";
+                    infoGra.ForeColor = Color.FromArgb(255, 74, 28);
+                }
+                else
+                {
+                    // Wygrana
+                    int wygrana = aktualnyZaklad * mnoznik;
+                    aktualneSaldo += wygrana;
+
+                    if (saldo != null)
+                        saldo.Text = aktualneSaldo.ToString();
+
+                    infoGra.Text = $"Wygrałeś {wygrana}! (x{mnoznik})";
+                    infoGra.ForeColor = Color.FromArgb(74, 255, 28);
+                }
             }
 
-            // Odczekaj 2 sekundy i przywróć normalny stan
+            ZapiszSaldoDoPliku();
+
+            // Reset po 2 sekundach
             Timer resetTimer = new Timer();
             resetTimer.Interval = 2000;
             resetTimer.Tick += (s, args) =>
@@ -188,28 +382,44 @@ namespace Hipcio
         {
             czyGraWTrakcie = false;
             przyciskGraj.Enabled = true;
-            infoGra.Text = "Koło Fortuny";
-            infoGra.ForeColor = Color.FromArgb(188, 188, 188);
+
+            if (infoGra != null)
+            {
+                infoGra.Text = "Koło Fortuny";
+                infoGra.ForeColor = Color.FromArgb(188, 188, 188);
+            }
+
             aktualnyIndex = 0;
             PodswietlElement(0);
+
+            // Reset zakładu
+            tekstZakladu = "0";
+            if (zaklad != null)
+                zaklad.Text = tekstZakladu;
         }
 
         private void infoWynik_Click(object sender, EventArgs e)
         {
-            
+            // Placeholder
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-            
-        }
-        // Ustawienie tła formularza na obraz bez migania
-        protected override void OnPaintBackground(PaintEventArgs e)
-        {
-            e.Graphics.DrawImage(
-                Properties.Resources.background,
-                this.ClientRectangle);
+            // Placeholder
         }
 
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            if (Properties.Resources.background != null)
+            {
+                e.Graphics.DrawImage(
+                    Properties.Resources.background,
+                    this.ClientRectangle);
+            }
+            else
+            {
+                base.OnPaintBackground(e);
+            }
+        }
     }
 }

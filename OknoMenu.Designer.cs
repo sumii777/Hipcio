@@ -30,14 +30,16 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.saldo = new System.Windows.Forms.Label();
+            this.autorzy = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.doladuj = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.bandyta = new System.Windows.Forms.Button();
             this.kolo = new System.Windows.Forms.Button();
             this.ruletka = new System.Windows.Forms.Button();
             this.bjack = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.doladuj = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -68,6 +70,77 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(801, 43);
             this.panel2.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(6)))), ((int)(((byte)(38)))));
+            this.panel3.Controls.Add(this.autorzy);
+            this.panel3.Controls.Add(this.saldo);
+            this.panel3.Controls.Add(this.pictureBox3);
+            this.panel3.Controls.Add(this.doladuj);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Location = new System.Drawing.Point(665, 44);
+            this.panel3.MaximumSize = new System.Drawing.Size(136, 407);
+            this.panel3.MinimumSize = new System.Drawing.Size(136, 407);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(136, 407);
+            this.panel3.TabIndex = 4;
+            // 
+            // saldo
+            // 
+            this.saldo.AutoSize = true;
+            this.saldo.BackColor = System.Drawing.Color.Transparent;
+            this.saldo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.saldo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
+            this.saldo.Location = new System.Drawing.Point(43, 65);
+            this.saldo.Name = "saldo";
+            this.saldo.Size = new System.Drawing.Size(63, 19);
+            this.saldo.TabIndex = 7;
+            this.saldo.Text = "{saldo}";
+            // 
+            // autorzy
+            // 
+            this.autorzy.BackgroundImage = global::Hipcio.Properties.Resources.autorzy1;
+            this.autorzy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.autorzy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.autorzy.Location = new System.Drawing.Point(3, 370);
+            this.autorzy.Name = "autorzy";
+            this.autorzy.Size = new System.Drawing.Size(133, 34);
+            this.autorzy.TabIndex = 8;
+            this.autorzy.UseVisualStyleBackColor = true;
+            this.autorzy.Click += new System.EventHandler(this.autorzy_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Hipcio.Properties.Resources.kostkoin;
+            this.pictureBox3.Location = new System.Drawing.Point(3, 60);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(34, 30);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 6;
+            this.pictureBox3.TabStop = false;
+            // 
+            // doladuj
+            // 
+            this.doladuj.BackgroundImage = global::Hipcio.Properties.Resources.doladuj;
+            this.doladuj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.doladuj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.doladuj.Location = new System.Drawing.Point(3, 132);
+            this.doladuj.Name = "doladuj";
+            this.doladuj.Size = new System.Drawing.Size(133, 34);
+            this.doladuj.TabIndex = 4;
+            this.doladuj.UseVisualStyleBackColor = true;
+            this.doladuj.Click += new System.EventHandler(this.doladuj_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Hipcio.Properties.Resources.saldo1;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 21);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(133, 33);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
             // 
             // bandyta
             // 
@@ -117,51 +190,6 @@
             this.bjack.UseVisualStyleBackColor = true;
             this.bjack.Click += new System.EventHandler(this.bjack_Click);
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(6)))), ((int)(((byte)(38)))));
-            this.panel3.Controls.Add(this.pictureBox3);
-            this.panel3.Controls.Add(this.doladuj);
-            this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.Location = new System.Drawing.Point(665, 44);
-            this.panel3.MaximumSize = new System.Drawing.Size(136, 407);
-            this.panel3.MinimumSize = new System.Drawing.Size(136, 407);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(136, 407);
-            this.panel3.TabIndex = 4;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Hipcio.Properties.Resources.kostkoin;
-            this.pictureBox3.Location = new System.Drawing.Point(3, 60);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(34, 30);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 6;
-            this.pictureBox3.TabStop = false;
-            // 
-            // doladuj
-            // 
-            this.doladuj.BackgroundImage = global::Hipcio.Properties.Resources.doladuj;
-            this.doladuj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.doladuj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.doladuj.Location = new System.Drawing.Point(0, 132);
-            this.doladuj.Name = "doladuj";
-            this.doladuj.Size = new System.Drawing.Size(133, 34);
-            this.doladuj.TabIndex = 4;
-            this.doladuj.UseVisualStyleBackColor = true;
-            this.doladuj.Click += new System.EventHandler(this.doladuj_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Hipcio.Properties.Resources.saldo1;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 21);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(133, 33);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Hipcio.Properties.Resources.hipekkasynologo;
@@ -191,6 +219,7 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -211,5 +240,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button doladuj;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label saldo;
+        private System.Windows.Forms.Button autorzy;
     }
 }

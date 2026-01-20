@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,15 +13,11 @@ namespace Hipcio
 {
     public partial class OknoBandyta : Form
     {
-        // Tworzenie obiektu losowego
         Random rand = new Random();
-
-        // Deklaracja zmiennych do przechowywania liczb losowych
         int randomNumber1;
         int randomNumber2;
         int randomNumber3;
 
-        // Tablica przechowywująca zdjęcia, które mogą zostać wylosowane
         Image[] zdjecia = new Image[]
         {
             Hipcio.Properties.Resources.krewetka,
@@ -31,38 +28,170 @@ namespace Hipcio
             Hipcio.Properties.Resources.sliwka1
         };
 
-        // Timer do animacji
         private Timer timerAnimacji;
-
-        // Licznik kroków animacji dla każdego bębna
         private int krokiAnimacji1 = 0;
         private int krokiAnimacji2 = 0;
         private int krokiAnimacji3 = 0;
-
-        // Aktualny indeks dla każdego bębna podczas animacji
         private int aktualnyIndex1 = 0;
         private int aktualnyIndex2 = 0;
         private int aktualnyIndex3 = 0;
-
-        // Czy gra jest w trakcie
         private bool czyGraWTrakcie = false;
-
-        // Licznik ticków timera
         private int tickCounter = 0;
+        private int aktualneSaldo = 1000;
+        private int aktualnyZaklad = 0;
+        private string sciezkaPliku = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wartosc.txt");
+        private string tekstZakladu = "0";
 
         public OknoBandyta()
         {
             InitializeComponent();
 
-            // Inicjalizacja timera animacji
             timerAnimacji = new Timer();
-            timerAnimacji.Interval = 50; // 50ms między klatkami
+            timerAnimacji.Interval = 50;
             timerAnimacji.Tick += TimerAnimacji_Tick;
 
-            // Ustaw początkowe obrazy
             obrazWynik1.Image = Hipcio.Properties.Resources.puste;
             obrazWynik2.Image = Hipcio.Properties.Resources.puste;
             obrazWynik3.Image = Hipcio.Properties.Resources.puste;
+
+            aktualneSaldo = WczytajLubUtworzPlik();
+
+            if (saldo != null)
+                saldo.Text = aktualneSaldo.ToString();
+
+            if (zaklad != null)
+            {
+                zaklad.Text = tekstZakladu;
+                zaklad.Cursor = Cursors.IBeam;
+            }
+
+            // Obsługa klawiatury na poziomie formy
+            this.KeyPreview = true;
+            this.KeyPress -= OknoBandyta_KeyPress;
+            this.KeyPress += OknoBandyta_KeyPress;
+            this.KeyDown -= OknoBandyta_KeyDown;
+            this.KeyDown += OknoBandyta_KeyDown;
+        }
+
+        private void OknoBandyta_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (czyGraWTrakcie)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                return;
+            }
+
+            // Delete - wyczyść zakład
+            if (e.KeyCode == Keys.Delete)
+            {
+                tekstZakladu = "0";
+                if (zaklad != null)
+                    zaklad.Text = tekstZakladu;
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+            // Backspace
+            else if (e.KeyCode == Keys.Back)
+            {
+                if (tekstZakladu.Length > 1)
+                {
+                    tekstZakladu = tekstZakladu.Substring(0, tekstZakladu.Length - 1);
+                }
+                else
+                {
+                    tekstZakladu = "0";
+                }
+
+                if (zaklad != null)
+                    zaklad.Text = tekstZakladu;
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+            // Enter - rozpocznij grę
+            else if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(sender, e);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void OknoBandyta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (czyGraWTrakcie)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Akceptuj tylko cyfry
+            if (char.IsDigit(e.KeyChar))
+            {
+                if (tekstZakladu == "0")
+                {
+                    tekstZakladu = e.KeyChar.ToString();
+                }
+                else
+                {
+                    string nowyTekst = tekstZakladu + e.KeyChar;
+                    if (long.TryParse(nowyTekst, out long wartoscTest) && wartoscTest <= int.MaxValue)
+                    {
+                        tekstZakladu = nowyTekst;
+                    }
+                }
+
+                if (zaklad != null)
+                    zaklad.Text = tekstZakladu;
+
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        int WczytajLubUtworzPlik()
+        {
+            try
+            {
+                if (!File.Exists(sciezkaPliku))
+                {
+                    File.WriteAllText(sciezkaPliku, "1000");
+                    return 1000;
+                }
+
+                string zawartosc = File.ReadAllText(sciezkaPliku).Trim();
+
+                if (int.TryParse(zawartosc, out int wartosc) && wartosc >= 0)
+                {
+                    return wartosc;
+                }
+
+                File.WriteAllText(sciezkaPliku, "1000");
+                return 1000;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd wczytywania salda: {ex.Message}\nUstawiono domyślne saldo 1000.",
+                    "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 1000;
+            }
+        }
+
+        private void ZapiszSaldoDoPliku()
+        {
+            try
+            {
+                File.WriteAllText(sciezkaPliku, aktualneSaldo.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd zapisywania salda: {ex.Message}",
+                    "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -70,7 +199,35 @@ namespace Hipcio
             if (czyGraWTrakcie)
                 return;
 
-            // Rozpocznij animację
+            if (zaklad != null)
+            {
+                if (!int.TryParse(zaklad.Text, out aktualnyZaklad))
+                {
+                    MessageBox.Show("Wprowadź poprawny zakład (liczba całkowita)!");
+                    zaklad.Text = "0";
+                    tekstZakladu = "0";
+                    return;
+                }
+
+                if (aktualnyZaklad <= 0)
+                {
+                    MessageBox.Show("Zakład musi być większy niż 0!");
+                    return;
+                }
+
+                if (aktualnyZaklad > aktualneSaldo)
+                {
+                    MessageBox.Show($"Nie masz wystarczająco środków!\nTwoje saldo: {aktualneSaldo}\nZakład: {aktualnyZaklad}");
+                    return;
+                }
+
+                aktualneSaldo -= aktualnyZaklad;
+                if (saldo != null)
+                    saldo.Text = aktualneSaldo.ToString();
+
+                ZapiszSaldoDoPliku();
+            }
+
             RozpocznijAnimacje();
         }
 
@@ -78,23 +235,22 @@ namespace Hipcio
         {
             czyGraWTrakcie = true;
             przyciskKrec.Enabled = false;
-            infoWynik.Text = "Losowanie...";
-            infoWynik.ForeColor = Color.FromArgb(188, 188, 188);
 
-            // Wylosuj końcowe wartości
+            if (infoWynik != null)
+            {
+                infoWynik.Text = "Losowanie...";
+                infoWynik.ForeColor = Color.FromArgb(188, 188, 188);
+            }
+
             randomNumber1 = rand.Next(0, zdjecia.Length);
             randomNumber2 = rand.Next(0, zdjecia.Length);
             randomNumber3 = rand.Next(0, zdjecia.Length);
 
-            // Ustaw różne czasy zatrzymania dla każdego bębna
-            krokiAnimacji1 = 15; // Pierwszy zatrzyma się po 15 krokach
-            krokiAnimacji2 = 25; // Drugi po 25 krokach
-            krokiAnimacji3 = 35; // Trzeci po 35 krokach
+            krokiAnimacji1 = 15;
+            krokiAnimacji2 = 25;
+            krokiAnimacji3 = 35;
 
-            // Resetuj licznik ticków
             tickCounter = 0;
-
-            // Rozpocznij animację
             timerAnimacji.Start();
         }
 
@@ -102,54 +258,46 @@ namespace Hipcio
         {
             tickCounter++;
 
-            // Animuj pierwszy bęben
             if (krokiAnimacji1 > 0)
             {
                 aktualnyIndex1 = rand.Next(0, zdjecia.Length);
                 obrazWynik1.Image = zdjecia[aktualnyIndex1];
                 krokiAnimacji1--;
 
-                // Zatrzymaj na właściwym obrazie
                 if (krokiAnimacji1 == 0)
                 {
                     obrazWynik1.Image = zdjecia[randomNumber1];
                 }
             }
 
-            // Animuj drugi bęben
             if (krokiAnimacji2 > 0)
             {
                 aktualnyIndex2 = rand.Next(0, zdjecia.Length);
                 obrazWynik2.Image = zdjecia[aktualnyIndex2];
                 krokiAnimacji2--;
 
-                // Zatrzymaj na właściwym obrazie
                 if (krokiAnimacji2 == 0)
                 {
                     obrazWynik2.Image = zdjecia[randomNumber2];
                 }
             }
 
-            // Animuj trzeci bęben
             if (krokiAnimacji3 > 0)
             {
                 aktualnyIndex3 = rand.Next(0, zdjecia.Length);
                 obrazWynik3.Image = zdjecia[aktualnyIndex3];
                 krokiAnimacji3--;
 
-                // Zatrzymaj na właściwym obrazie
                 if (krokiAnimacji3 == 0)
                 {
                     obrazWynik3.Image = zdjecia[randomNumber3];
                 }
             }
 
-            // Sprawdź czy wszystkie bębny się zatrzymały
             if (krokiAnimacji1 == 0 && krokiAnimacji2 == 0 && krokiAnimacji3 == 0)
             {
                 timerAnimacji.Stop();
 
-                // Odczekaj chwilę przed wyświetleniem wyniku
                 Timer wynikTimer = new Timer();
                 wynikTimer.Interval = 300;
                 wynikTimer.Tick += (s, args) =>
@@ -164,23 +312,34 @@ namespace Hipcio
 
         private void PokazWynik()
         {
-            // Sprawdzanie czy wszystkie wylosowane symbole są takie same
             if (randomNumber1 == randomNumber2 && randomNumber1 == randomNumber3)
             {
-                // Wyświetla się informacja o wygranej gdy symbole są identyczne
-                infoWynik.Text = "WYGRANA!";
-                infoWynik.ForeColor = Color.FromArgb(34, 111, 84);
+                int wygrana = aktualnyZaklad * 5;
+                aktualneSaldo += wygrana;
 
-                // Efekt migania
+                if (saldo != null)
+                    saldo.Text = aktualneSaldo.ToString();
+
+                ZapiszSaldoDoPliku();
+
+                if (infoWynik != null)
+                {
+                    infoWynik.Text = $"WYGRANA! +{wygrana}";
+                    infoWynik.ForeColor = Color.FromArgb(34, 111, 84);
+                }
+
                 AnimujWygrana();
             }
             else
             {
-                // Wyświetla się informacja o przegranej gdy symbole są inne
-                infoWynik.Text = "Przegrana";
-                infoWynik.ForeColor = Color.FromArgb(218, 44, 56);
+                ZapiszSaldoDoPliku();
 
-                // Przywróć możliwość gry
+                if (infoWynik != null)
+                {
+                    infoWynik.Text = "Przegrana";
+                    infoWynik.ForeColor = Color.FromArgb(218, 44, 56);
+                }
+
                 Timer resetTimer = new Timer();
                 resetTimer.Interval = 1500;
                 resetTimer.Tick += (s, args) =>
@@ -202,24 +361,26 @@ namespace Hipcio
             {
                 miganiaLicznik++;
 
-                // Zmień kolor co klatkę
-                if (miganiaLicznik % 2 == 0)
+                if (infoWynik != null)
                 {
-                    infoWynik.ForeColor = Color.FromArgb(74, 255, 28); // Jasny zielony
-                }
-                else
-                {
-                    infoWynik.ForeColor = Color.FromArgb(34, 111, 84); // Ciemny zielony
+                    if (miganiaLicznik % 2 == 0)
+                    {
+                        infoWynik.ForeColor = Color.FromArgb(74, 255, 28);
+                    }
+                    else
+                    {
+                        infoWynik.ForeColor = Color.FromArgb(34, 111, 84);
+                    }
                 }
 
-                // Zatrzymaj po 6 migach
                 if (miganiaLicznik >= 6)
                 {
                     migTimer.Stop();
                     migTimer.Dispose();
-                    infoWynik.ForeColor = Color.FromArgb(74, 255, 28);
 
-                    // Reset po chwili
+                    if (infoWynik != null)
+                        infoWynik.ForeColor = Color.FromArgb(74, 255, 28);
+
                     Timer resetTimer = new Timer();
                     resetTimer.Interval = 1500;
                     resetTimer.Tick += (s2, args2) =>
@@ -238,16 +399,29 @@ namespace Hipcio
         {
             czyGraWTrakcie = false;
             przyciskKrec.Enabled = true;
-            infoWynik.Text = "Zagraj!";
-            infoWynik.ForeColor = Color.FromArgb(188, 188, 188);
+
+            if (infoWynik != null)
+            {
+                infoWynik.Text = "Zagraj!";
+                infoWynik.ForeColor = Color.FromArgb(188, 188, 188);
+            }
+
+            // Reset zakładu do domyślnej wartości
+            tekstZakladu = "10";
+            if (zaklad != null)
+                zaklad.Text = tekstZakladu;
         }
 
-        // Ustawienie tła formularza na obraz bez migania
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            e.Graphics.DrawImage(
-                Properties.Resources.background,
-                this.ClientRectangle);
+            if (Properties.Resources.background != null)
+            {
+                e.Graphics.DrawImage(Properties.Resources.background, this.ClientRectangle);
+            }
+            else
+            {
+                base.OnPaintBackground(e);
+            }
         }
     }
 }

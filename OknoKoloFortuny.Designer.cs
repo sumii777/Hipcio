@@ -297,6 +297,7 @@
             this.Name = "OknoKoloFortuny";
             this.ShowIcon = false;
             this.Text = "Koło Fortuny";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OknoKoloFortuny_KeyPress);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
