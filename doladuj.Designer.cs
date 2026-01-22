@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(doladuj));
             this.label1 = new System.Windows.Forms.Label();
             this.saldo = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -57,7 +58,7 @@
             this.saldo.AutoSize = true;
             this.saldo.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.saldo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.saldo.Location = new System.Drawing.Point(362, 55);
+            this.saldo.Location = new System.Drawing.Point(362, 54);
             this.saldo.Name = "saldo";
             this.saldo.Size = new System.Drawing.Size(81, 24);
             this.saldo.TabIndex = 1;
@@ -93,7 +94,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.button1.Location = new System.Drawing.Point(647, 127);
+            this.button1.Location = new System.Drawing.Point(647, 126);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 38);
@@ -108,7 +109,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.button2.Location = new System.Drawing.Point(62, 127);
+            this.button2.Location = new System.Drawing.Point(62, 126);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(97, 38);
@@ -123,7 +124,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.button3.Location = new System.Drawing.Point(62, 193);
+            this.button3.Location = new System.Drawing.Point(62, 192);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(97, 38);
@@ -138,7 +139,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
             this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.button4.Location = new System.Drawing.Point(647, 193);
+            this.button4.Location = new System.Drawing.Point(647, 192);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(97, 38);
@@ -154,9 +155,11 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(27)))), ((int)(((byte)(27)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(816, 489);
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "doladuj";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "doladuj";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

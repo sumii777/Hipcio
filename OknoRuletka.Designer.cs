@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OknoRuletka));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.infoGra = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
@@ -83,11 +84,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(816, 489);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "OknoRuletka";
-            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ruletka";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);

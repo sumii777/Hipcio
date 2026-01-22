@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OknoBandyta));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.infoWynik = new System.Windows.Forms.Label();
             this.zaklad = new System.Windows.Forms.Label();
@@ -35,10 +36,10 @@
             this.infoZaklad = new System.Windows.Forms.Label();
             this.infoSaldo = new System.Windows.Forms.Label();
             this.przyciskKrec = new System.Windows.Forms.Button();
-            this.infoGra = new System.Windows.Forms.Label();
             this.obrazWynik1 = new System.Windows.Forms.PictureBox();
             this.obrazWynik2 = new System.Windows.Forms.PictureBox();
             this.obrazWynik3 = new System.Windows.Forms.PictureBox();
+            this.infoGra = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.obrazWynik2)).BeginInit();
@@ -171,20 +172,6 @@
             this.przyciskKrec.UseVisualStyleBackColor = false;
             this.przyciskKrec.Click += new System.EventHandler(this.button1_Click);
             // 
-            // infoGra
-            // 
-            this.infoGra.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel1.SetColumnSpan(this.infoGra, 5);
-            this.infoGra.Font = new System.Drawing.Font("Arial", 33F, System.Drawing.FontStyle.Bold);
-            this.infoGra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
-            this.infoGra.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.infoGra.Location = new System.Drawing.Point(183, 67);
-            this.infoGra.Name = "infoGra";
-            this.infoGra.Size = new System.Drawing.Size(434, 90);
-            this.infoGra.TabIndex = 3;
-            this.infoGra.Text = "Jednoręki Bandyta";
-            this.infoGra.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // obrazWynik1
             // 
             this.obrazWynik1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -227,17 +214,31 @@
             this.obrazWynik3.TabIndex = 2;
             this.obrazWynik3.TabStop = false;
             // 
+            // infoGra
+            // 
+            this.infoGra.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel1.SetColumnSpan(this.infoGra, 5);
+            this.infoGra.Font = new System.Drawing.Font("Arial", 33F, System.Drawing.FontStyle.Bold);
+            this.infoGra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(188)))), ((int)(((byte)(188)))));
+            this.infoGra.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.infoGra.Location = new System.Drawing.Point(183, 67);
+            this.infoGra.Name = "infoGra";
+            this.infoGra.Size = new System.Drawing.Size(434, 90);
+            this.infoGra.TabIndex = 3;
+            this.infoGra.Text = "Jednoręki Bandyta";
+            this.infoGra.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // OknoBandyta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(816, 489);
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "OknoBandyta";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Jednoręki Bandyta";
             this.tableLayoutPanel1.ResumeLayout(false);

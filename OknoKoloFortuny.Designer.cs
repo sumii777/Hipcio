@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OknoKoloFortuny));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.saldo = new System.Windows.Forms.Label();
             this.infoSaldo = new System.Windows.Forms.Label();
@@ -291,11 +292,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(816, 489);
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "OknoKoloFortuny";
-            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Koło Fortuny";
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OknoKoloFortuny_KeyPress);
             this.tableLayoutPanel1.ResumeLayout(false);
