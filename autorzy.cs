@@ -15,8 +15,9 @@ namespace Hipcio
             "",
             "IGOR BURIAN",
             "",
-            "Udział w podejmowaniu decyzji odnośnie tematyki aplikacji, jej funkcjonalności oraz wyglądu",
-            ". Zaprogramowanie kodu aplikacji, oraz jej funkcjonalności wliczając w to gry interaktywne oraz responsywne okna.",
+            "Udział w podejmowaniu decyzji odnośnie tematyki aplikacji, jej funkcjonalności oraz wyglądu.",
+            " Zaprogramowanie kodu aplikacji, oraz jej funkcjonalności wliczając w to:",
+            "gry interaktywne oraz responsywne okna.",
             " Założenie githuba w celu dzielenia się wersjami aplikacji z innymi.",
             " Projektowanie układu okien i głównych funkcji w aplikacji. Opisanie kodu aplikacji.",
             "",
@@ -41,7 +42,7 @@ namespace Hipcio
             "Udział w podejmowaniu decyzji odnośnie tematyki aplikacji,",
             "jej funkcjonalności oraz wyglądu.",
             "Testowanie aplikacji i pomoc w sporządzeniu jej dokumentacji.",
-            "Robienie grafik do aplikacji. Sporządzenie wymagań aplikacji."
+            "Robienie grafik do aplikacji. Sporządzenie wymagań aplikacji.",
             "",
             "",
             "DAWID GÓRSKI",
@@ -49,7 +50,7 @@ namespace Hipcio
              "Udział w podejmowaniu decyzji odnośnie tematyki aplikacji,",
             "jej funkcjonalności oraz wyglądu.",
             "Testowanie aplikacji i pomoc w sporządzeniu jej dokumentacji.",
-            "Robienie grafik do aplikacji. Sporządzenie wymagań aplikacji."
+            "Robienie grafik do aplikacji. Sporządzenie wymagań aplikacji.",
             "",
             "",
             "SANDRA GARCZYŃSKA",
@@ -98,7 +99,7 @@ namespace Hipcio
             "",
             "",
             "",
-            "DZIĘKUJEMY ZA UWAGĘ",
+            "DZIĘKUJEMY ZA UWAGĘ!!!",
             "",
             "",
             ""
@@ -135,7 +136,7 @@ namespace Hipcio
 
         private void ScrollTimer_Tick(object sender, EventArgs e)
         {
-            yPosition -= 2.5f; // Szybsze scrollowanie
+            yPosition -= 1.5f; // Szybsze scrollowanie
 
             if (yPosition < -(credits.Length * 35 + 200))
             {
